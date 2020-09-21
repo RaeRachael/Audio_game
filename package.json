@@ -1,0 +1,14 @@
+{
+  "name": "audio_game",
+  "version": "1.0.0",
+  "description": "audio only game",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "author": "rachael ewins",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^26.4.2"
+  }
+}
