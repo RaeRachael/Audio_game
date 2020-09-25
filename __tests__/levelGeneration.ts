@@ -41,54 +41,51 @@ describe( "function createLevel()", function() {
 
 describe( "function create singleTile(previousTile)", function() {
 
-  describe( "created tile is in the correct position based on the openPath", function() {
-
-    var previousTile = {
-      "position": {"x": 0, "y": 0},
-      "paths": { "North": false, "South": false, "East": false, "West": false},
-      "openPaths": {"North": false, "South": false, "East": false, "West": false},
-      "numberOpenPaths": 1
-    }
-
-    it( "reduces numberOpenPaths of previousTile by one", function() {
-      previousTile.numberOpenPaths = 1
-      createSingleTile(previousTile)
-
-      expect(previousTile.numberOpenPaths).toEqual(0)
-    })
+  var previousTile = {
+    "position": {"x": 0, "y": 0},
+    "paths": { "North": false, "South": false, "East": false, "West": false},
+    "openPaths": {"North": false, "South": false, "East": false, "West": false},
+    "numberOpenPaths": 1
+  }
+  
+  describe( "created tile has correct position and return path based on the openPath", function() {
 
     describe( "Previous tile at '0,0'", function() {
 
-      it( "the second tile is at '0,1' if openPath is 'North'", function() {
+      it( "the second tile is at '0,1' and path 'South' is true if openPath is 'North'", function() {
         previousTile.position = { x: 0, y: 0 }
         previousTile.openPaths = {"North": true, "South": false, "East": false, "West": false}
         var secondTile = createSingleTile(previousTile)
     
         expect(secondTile.position).toEqual({x: 0, y: 1})
+        expect(secondTile.paths.South).toEqual(true)
       })
 
-      it( "the second tile is at '0,-1' if openPath is 'South'", function() {
+      it( "the second tile is at '0,-1' and path 'North' is true if openPath is 'South'", function() {
         previousTile.position = { x: 0, y: 0 }
         previousTile.openPaths = {"North": false, "South": true, "East": false, "West": false}
         var secondTile = createSingleTile(previousTile)
     
-        expect(secondTile.position).toEqual({x: 0, y: -1}) 
+        expect(secondTile.position).toEqual({x: 0, y: -1})
+        expect(secondTile.paths.North).toEqual(true)
       })
 
-      it( "the second tile is at '1,0' if openPath is 'East'", function() {
+      it( "the second tile is at '1,0' and path 'West' if openPath is 'East'", function() {
         previousTile.position = { x: 0, y: 0 }
         previousTile.openPaths = {"North": false, "South": false, "East": true, "West": false}
         var secondTile = createSingleTile(previousTile)
     
-        expect(secondTile.position).toEqual({x: 1, y: 0}) 
+        expect(secondTile.position).toEqual({x: 1, y: 0})
+        expect(secondTile.paths.West).toEqual(true)
       })
 
-      it( "the second tile is at '-1,0' if openPath is 'West'", function() {
+      it( "the second tile is at '-1,0' and path 'East' if openPath is 'West'", function() {
         previousTile.position = { x: 0, y: 0 }
         previousTile.openPaths = {"North": false, "South": false, "East": false, "West": true}
         var secondTile = createSingleTile(previousTile)
 
         expect(secondTile.position).toEqual({x: -1, y: 0})
+        expect(secondTile.paths.East).toEqual(true)
       })
 
     })
