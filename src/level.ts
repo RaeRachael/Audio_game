@@ -24,16 +24,28 @@ var i:number;
 export function createLevel(number) {
   var levelMap: Tile[] = [ {
     position: {"x": 0, "y": 0},
-    paths: {"North": true, "South": false, "East": false, "West": false},
-    openPaths: {"North": true, "South": false, "East": false, "West": false},
-    numberOpenPaths: 1
+    paths: {"North": true, "South": true, "East": false, "West": false},
+    openPaths: {"North": true, "South": true, "East": false, "West": false},
+    numberOpenPaths: 2
   } ]
   for ( i = 0; i < number**2 - 1; i++ ) {
-    levelMap.push(createSingleTile(levelMap[i]))
+    while (levelMap[i].numberOpenPaths > 0 ) {
+      console.log(levelMap[i], i)
+      levelMap.push(createSingleTile(levelMap[i]))
+      console.log(levelMap[i], "end of while")
+    }
   }
   // console.log(levelMap)
   return levelMap
 }
+
+// export function addOneTile(levelMap) {
+//   for (i = 0; i < levelMap.length; i++) {
+//     if (levelMap[i].numberOpenPaths > 0) {
+//       return levelMap.push(createSingleTile(levelMap[i]))
+//     }
+//   }
+// }
 
 export function createSingleTile(previousTile) {
   var singleTile:Tile = {

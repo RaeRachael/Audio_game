@@ -2,14 +2,6 @@ import { createLevel, createSingleTile } from "../src/level"
 
 describe( "function createLevel()", function() {
 
-  it( "creates an array the size of the argument squared", function() {
-  
-    expect(createLevel(1).length).toEqual(1)
-
-    expect(createLevel(2).length).toEqual(4)
-
-  })
-
   it( "creates tiles with postions and availiable paths", function() {
   
     expect(Number.isInteger(createLevel(1)[0].position.x)).toEqual(true)
@@ -22,7 +14,7 @@ describe( "function createLevel()", function() {
 
   })
 
-  it( "the first tile is at '0,0' and has one availiable path", function() {
+  it( "the first tile is at '0,0' and has two availiable path", function() {
 
     var firstTile = createLevel(1)[0]
     var availiablePaths = 0
@@ -33,8 +25,14 @@ describe( "function createLevel()", function() {
 
     expect(firstTile.position).toEqual({x: 0, y: 0})
     
-    expect(availiablePaths).toEqual(1)
+    expect(availiablePaths).toEqual(2)
     
+  })
+
+  it( "builds tiles from the nearest open path", function() {
+    var levelMap = createLevel(2)
+    expect(levelMap[1].position).toEqual({x: 0, y: 1})
+    expect(levelMap[2].position).toEqual({x: 0, y: -1})
   })
 
 })
