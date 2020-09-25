@@ -2,6 +2,14 @@ import { createLevel, createSingleTile } from "../src/level"
 
 describe( "function createLevel()", function() {
 
+  it( "creates an array the size of the argument squared or greater", function() {
+  
+    expect(createLevel(1).length).toBeGreaterThan(0)
+
+    expect(createLevel(2).length).toBeGreaterThan(3)
+
+  })
+
   it( "creates tiles with postions and availiable paths", function() {
   
     expect(Number.isInteger(createLevel(1)[0].position.x)).toEqual(true)
