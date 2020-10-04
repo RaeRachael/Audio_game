@@ -20,6 +20,7 @@ const directionValues:DirectionValues = {
 }
 
 var i:number;
+var j:number;
 
 export function createLevel(number) {
   var levelMap: Tile[] = [ {
@@ -30,24 +31,13 @@ export function createLevel(number) {
   } ]
   for ( i = 0; i < number**2 - 1; i++ ) {
     while (levelMap[i].numberOpenPaths > 0 ) {
-      console.log(levelMap[i], i)
-      levelMap.push(createSingleTile(levelMap[i]))
-      console.log(levelMap[i], "end of while")
+      levelMap.push(createSingleTile(levelMap[i], levelMap))
     }
   }
-  // console.log(levelMap)
   return levelMap
 }
 
-// export function addOneTile(levelMap) {
-//   for (i = 0; i < levelMap.length; i++) {
-//     if (levelMap[i].numberOpenPaths > 0) {
-//       return levelMap.push(createSingleTile(levelMap[i]))
-//     }
-//   }
-// }
-
-export function createSingleTile(previousTile) {
+export function createSingleTile(previousTile:Tile, levelMap:Tile[]) {
   var singleTile:Tile = {
     position: {"x": 0, "y": 0},
     paths: {"North": true, "South": false, "East": false, "West": false},
@@ -71,8 +61,37 @@ export function createSingleTile(previousTile) {
 
   singleTile.position.x = previousTile.position.x + openPathValue.x
   singleTile.position.y = previousTile.position.y + openPathValue.y
-  // singleTile.paths = {"North": true, "South": false, "East": false, "West": false}
-  singleTile.openPaths = {"North": true, "South": false, "East": false, "West": false}
+
+  checkForNearbyTiles(singleTile, levelMap)
+  
+  createOpenPaths(singleTile)
 
   return singleTile
+}
+
+export function checkForNearbyTiles(tile:Tile, levelMap:Tile[]) {
+  for ( j = 0; j < levelMap.length; j++ ) {
+    if (levelMap[j].position.x === tile.position.x && levelMap[j].position.y + 1 === tile.position.y) {
+      tile.paths.South = levelMap[j].paths.North
+    }
+    if (levelMap[j].position.x == tile.position.x && levelMap[j].position.y -1 == tile.position.y) {
+      tile.paths.North = levelMap[j].paths.South
+    }
+    if (levelMap[j].position.x + 1 == tile.position.x && levelMap[j].position.y == tile.position.y) {
+      tile.paths.West = levelMap[j].paths.East
+    }
+    if (levelMap[j].position.x - 1 == tile.position.x && levelMap[j].position.y == tile.position.y) {
+      tile.paths.East = levelMap[j].paths.West
+    }
+  }
+}
+
+export function createOpenPaths(tile:Tile) {
+  for( let direction in tile.paths) {
+    if (tile.paths[direction] === false && Math.random() > 0.2){
+      tile.paths[direction] = true
+      tile.openPaths[direction] = true
+      tile.numberOpenPaths ++
+    }
+  }
 }
