@@ -40,9 +40,9 @@ export function createLevel(number) {
 export function createSingleTile(previousTile:Tile, levelMap:Tile[]) {
   var singleTile:Tile = {
     position: {"x": 0, "y": 0},
-    paths: {"North": true, "South": false, "East": false, "West": false},
-    openPaths: {"North": true, "South": false, "East": false, "West": false},
-    numberOpenPaths: 1
+    paths: {"North": false, "South": false, "East": false, "West": false},
+    openPaths: {"North": false, "South": false, "East": false, "West": false},
+    numberOpenPaths: 0
   }
   var openPathValue: { x:number, y:number } = {x: 0, y: 0}
 
