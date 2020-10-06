@@ -94,18 +94,12 @@ export function createSingleTile(previousTile:Tile, levelMap:Tile[]) {
 }
 
 export function checkForNearbyTiles(tile:Tile, levelMap:Tile[]) {
-  for ( j = 0; j < levelMap.length; j++ ) {
-    if (levelMap[j].position.x === tile.position.x && levelMap[j].position.y + 1 === tile.position.y) {
-      tile.paths.South = levelMap[j].paths.North
-    }
-    if (levelMap[j].position.x == tile.position.x && levelMap[j].position.y -1 == tile.position.y) {
-      tile.paths.North = levelMap[j].paths.South
-    }
-    if (levelMap[j].position.x + 1 == tile.position.x && levelMap[j].position.y == tile.position.y) {
-      tile.paths.West = levelMap[j].paths.East
-    }
-    if (levelMap[j].position.x - 1 == tile.position.x && levelMap[j].position.y == tile.position.y) {
-      tile.paths.East = levelMap[j].paths.West
+  for (let direction in tile.openPaths) {
+    for ( j = 0; j < levelMap.length; j++ ) {
+      if (levelMap[j].position.x + directionValues[direction].x === tile.position.x
+          && levelMap[j].position.y + directionValues[direction].y === tile.position.y) {
+        tile.paths[directionValues[direction].opposite] = levelMap[j].paths[direction]
+      }
     }
   }
 }
