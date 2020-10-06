@@ -32,7 +32,7 @@ describe( "function createLevel()", function() {
 
   it( "the first tile is at '0,0' and has two availiable path", function() {
 
-    var firstTile = createLevel(1)[0]
+    var firstTile = createLevel(2)[0]
     var availiablePaths = 0
     if (firstTile.paths.North) availiablePaths++
     if (firstTile.paths.South) availiablePaths++
@@ -49,6 +49,18 @@ describe( "function createLevel()", function() {
     var levelMap = createLevel(2)
     expect(levelMap[1].position).toEqual({x: 0, y: 1})
     expect(levelMap[2].position).toEqual({x: 0, y: -1})
+  })
+
+  it( "closes all open paths at the end", function() {
+    var levelMap = createLevel(2)
+    for( var i = 0; i < levelMap.length; i++) {
+      expect(levelMap[i].numberOpenPaths).toEqual(0)
+    }
+  })
+
+  it( "labels the last tile as the exitTile", function() {
+    var levelMap = createLevel(2)
+    expect(levelMap[levelMap.length-1].exitTile).toEqual(true)
   })
 
 })

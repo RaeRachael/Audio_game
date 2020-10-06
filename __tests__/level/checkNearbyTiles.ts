@@ -7,13 +7,15 @@ describe( "function checkForNearbyTiles(tile)", function() {
         "position": {"x": 0, "y": 0},
         "paths": { "North": true, "South": false, "East": false, "West": false},
         "openPaths": {"North": false, "South": false, "East": false, "West": false},
-        "numberOpenPaths": 1
+        "numberOpenPaths": 1,
+        "exitTile": false
       }]
       var testTile = {
         "position": {"x": 0, "y": 1},
         "paths": { "North": false, "South": false, "East": true, "West": false},
         "openPaths": {"North": false, "South": false, "East": false, "West": false},
-        "numberOpenPaths": 0
+        "numberOpenPaths": 0,
+        "exitTile": false
       }
 
       checkForNearbyTiles(testTile, levelMap)
@@ -26,13 +28,15 @@ describe( "function checkForNearbyTiles(tile)", function() {
         "position": {"x": 0, "y": 0},
         "paths": { "North": false, "South": false, "East": false, "West": false},
         "openPaths": {"North": false, "South": false, "East": false, "West": false},
-        "numberOpenPaths": 1
+        "numberOpenPaths": 1,
+        "exitTile": false
       }]
       var testTile = {
         "position": {"x": 0, "y": 1},
         "paths": { "North": false, "South": true, "East": true, "West": false},
         "openPaths": {"North": false, "South": false, "East": false, "West": false},
-        "numberOpenPaths": 0
+        "numberOpenPaths": 0,
+        "exitTile": false
       }
 
       checkForNearbyTiles(testTile, levelMap)

@@ -4,6 +4,7 @@ type Tile = {
   paths: {"North": boolean, "South": boolean, "East": boolean, "West": boolean}
   openPaths: {"North": boolean, "South": boolean, "East": boolean, "West": boolean}
   numberOpenPaths: number
+  exitTile: boolean
 }
 type DirectionValues = {
   North: {x: number, y: number, "opposite":string},
@@ -27,14 +28,15 @@ export function createLevel(number) {
     position: {"x": 0, "y": 0},
     paths: {"North": true, "South": true, "East": false, "West": false},
     openPaths: {"North": true, "South": true, "East": false, "West": false},
-    numberOpenPaths: 2
+    numberOpenPaths: 2,
+    exitTile: false
   } ]
   for ( i = 0; i < number**2 - 1; i++ ) {
     while (levelMap[i].numberOpenPaths > 0 ) {
       levelMap.push(createSingleTile(levelMap[i], levelMap))
     }
   }
-  return levelMap
+  return tidy(levelMap)
 }
 
 export function createSingleTile(previousTile:Tile, levelMap:Tile[]) {
@@ -42,7 +44,8 @@ export function createSingleTile(previousTile:Tile, levelMap:Tile[]) {
     position: {"x": 0, "y": 0},
     paths: {"North": false, "South": false, "East": false, "West": false},
     openPaths: {"North": false, "South": false, "East": false, "West": false},
-    numberOpenPaths: 0
+    numberOpenPaths: 0,
+    exitTile: false
   }
   var openPathValue: { x:number, y:number } = {x: 0, y: 0}
 
@@ -94,4 +97,18 @@ export function createOpenPaths(tile:Tile) {
       tile.numberOpenPaths ++
     }
   }
+}
+
+function tidy(levelMap:Tile[]) {
+  for ( i = 0; i < levelMap.length; i++ ) {
+    for( let direction in levelMap[i].paths) {
+      if (levelMap[i].openPaths[direction] === true){
+        levelMap[i].paths[direction] = false
+        levelMap[i].openPaths[direction] = false
+        levelMap[i].numberOpenPaths --
+      }
+    }
+  }
+  levelMap[levelMap.length-1].exitTile = true
+  return levelMap
 }

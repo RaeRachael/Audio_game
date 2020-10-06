@@ -14,9 +14,16 @@ describe( "function createSingleTile(previousTile)", function() {
     "position": {"x": 0, "y": 0},
     "paths": { "North": false, "South": false, "East": false, "West": false},
     "openPaths": {"North": false, "South": false, "East": false, "West": false},
-    "numberOpenPaths": 1
+    "numberOpenPaths": 1,
+    "exitTile": false
   }
   var levelMap = [previousTile]
+
+  it ( "creates a non exitTile", function() {
+    var secondTile = createSingleTile(previousTile, levelMap)
+  
+    expect(secondTile.exitTile).toEqual(false)
+  })
   
   describe( "created tile has correct position and return path based on the openPath", function() {
 
