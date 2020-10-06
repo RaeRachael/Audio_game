@@ -63,4 +63,12 @@ describe( "function createLevel()", function() {
     expect(levelMap[levelMap.length-1].exitTile).toEqual(true)
   })
 
+  it( "adds a new OpenPath when needed", function() {
+    jest.spyOn(global.Math, 'random').mockReturnValue(0.1);
+
+    var levelMap = createLevel(4)
+    expect(levelMap.length).toEqual(16)
+
+  })
+
 })

@@ -32,11 +32,32 @@ export function createLevel(number) {
     exitTile: false
   } ]
   for ( i = 0; i < number**2 - 1; i++ ) {
+    if ( i === levelMap.length -1 && levelMap[i].numberOpenPaths === 0) {
+      makeOneOpenPath(levelMap[i], levelMap)
+    }
     while (levelMap[i].numberOpenPaths > 0 ) {
       levelMap.push(createSingleTile(levelMap[i], levelMap))
     }
   }
   return tidy(levelMap)
+}
+
+function makeOneOpenPath(tile:Tile, levelMap:Tile[]) {
+  for (let direction in tile.openPaths) {
+    tile.paths[direction] = true
+    tile.openPaths[direction] = true
+    for ( j = 0; j < levelMap.length; j++ ) {
+      if (levelMap[j].position.x + directionValues[direction].x === tile.position.x
+           && levelMap[j].position.y + directionValues[direction].y === tile.position.y) {
+        tile.paths[direction] = false
+        tile.openPaths[direction] = false
+      }
+    }
+    if (tile.paths[direction] === true) {
+      tile.numberOpenPaths ++
+      break
+    }
+  }
 }
 
 export function createSingleTile(previousTile:Tile, levelMap:Tile[]) {
