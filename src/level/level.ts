@@ -1,8 +1,9 @@
 type Position = {x: number, y: number}
+type Directions = {"North": boolean, "South": boolean, "East": boolean, "West": boolean}
 type Tile = {
   position: Position
-  paths: {"North": boolean, "South": boolean, "East": boolean, "West": boolean}
-  openPaths: {"North": boolean, "South": boolean, "East": boolean, "West": boolean}
+  paths: Directions
+  openPaths: Directions
   numberOpenPaths: number
   exitTile: boolean
 }
