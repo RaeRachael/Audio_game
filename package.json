@@ -2,15 +2,17 @@
   "name": "audio_game",
   "version": "1.0.0",
   "description": "audio only game",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
+    "start": "http-server -p 3000",
     "test": "jest --coverage"
   },
   "author": "rachael ewins",
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "@types/jest": "^26.0.14"
+    "@types/jest": "^26.0.14",
+    "http-server": "^0.12.3"
   },
   "devDependencies": {
     "jest": "^26.4.2",
