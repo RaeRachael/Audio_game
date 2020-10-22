@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var level_1 = require("../../src/level/level");
+const level_1 = require("../../src/level/level");
 describe("function checkForNearbyTiles(tile)", function () {
     describe("changes tile properties if a tile is nearby", function () {
         it("makes a path true if nearby tile connects to it", function () {

@@ -1,32 +1,31 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Player = void 0;
-var directionValues = {
+const directionValues = {
     North: { x: 0, y: 1, opposite: "South", left: "West", right: "East" },
     South: { x: 0, y: -1, opposite: "North", left: "East", right: "West" },
-    East: { x: 1, y: 0, opposite: "West", left: "South", right: "North" },
-    West: { x: -1, y: 0, opposite: "East", left: "North", right: "South" }
+    East: { x: 1, y: 0, opposite: "West", left: "North", right: "South" },
+    West: { x: -1, y: 0, opposite: "East", left: "South", right: "North" }
 };
-var Player = /** @class */ (function () {
-    function Player() {
+export class Player {
+    constructor() {
         this.position = { x: 0, y: 0 };
         this.direction = "North";
     }
-    Player.prototype.reset = function () {
+    reset() {
         this.position = { x: 0, y: 0 };
         this.direction = "North";
-    };
-    Player.prototype.step = function () {
+    }
+    step() {
         this.position.x += directionValues[this.direction].x;
         this.position.y += directionValues[this.direction].y;
-    };
-    Player.prototype.left = function () {
+    }
+    left() {
         this.direction = directionValues[this.direction].left;
-    };
-    Player.prototype.right = function () {
+    }
+    right() {
         this.direction = directionValues[this.direction].right;
-    };
-    return Player;
-}());
+    }
+}
 exports.Player = Player;
 //# sourceMappingURL=player.js.map
