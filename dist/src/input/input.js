@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Input = void 0;
 export class Input {
     constructor(player) {
         this.player = player;
@@ -23,5 +20,4 @@ export class Input {
         console.log(this.player.direction);
     }
 }
-exports.Input = Input;
 //# sourceMappingURL=input.js.map

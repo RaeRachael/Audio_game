@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const player_1 = require("../../src/player/player");
-var player = new player_1.Player;
+import { Player } from "../../src/player/player";
+var player = new Player;
 afterEach(() => {
     player.reset();
 });

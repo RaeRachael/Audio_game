@@ -1,15 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.createOpenPaths = exports.checkForNearbyTiles = exports.createSingleTile = exports.createLevel = void 0;
-const directionValues = {
-    North: { x: 0, y: 1, opposite: "South" },
-    South: { x: 0, y: -1, opposite: "North" },
-    East: { x: 1, y: 0, opposite: "West" },
-    West: { x: -1, y: 0, opposite: "East" }
-};
+import { directionValues } from "../helpers/typesAndConst.js";
 var i;
 var j;
-function createLevel(number) {
+export function createLevel(number) {
     var levelMap = [{
             position: { "x": 0, "y": 0 },
             paths: { "North": true, "South": true, "East": false, "West": false },
@@ -27,7 +19,6 @@ function createLevel(number) {
     }
     return tidy(levelMap);
 }
-exports.createLevel = createLevel;
 function makeOneOpenPath(tile, levelMap) {
     for (let direction in tile.openPaths) {
         tile.paths[direction] = true;
@@ -45,7 +36,7 @@ function makeOneOpenPath(tile, levelMap) {
         }
     }
 }
-function createSingleTile(previousTile, levelMap) {
+export function createSingleTile(previousTile, levelMap) {
     var singleTile = {
         position: { "x": 0, "y": 0 },
         paths: { "North": false, "South": false, "East": false, "West": false },
@@ -70,8 +61,7 @@ function createSingleTile(previousTile, levelMap) {
     createOpenPaths(singleTile);
     return singleTile;
 }
-exports.createSingleTile = createSingleTile;
-function checkForNearbyTiles(tile, levelMap) {
+export function checkForNearbyTiles(tile, levelMap) {
     for (let direction in tile.openPaths) {
         for (j = 0; j < levelMap.length; j++) {
             if (levelMap[j].position.x + directionValues[direction].x === tile.position.x
@@ -81,8 +71,7 @@ function checkForNearbyTiles(tile, levelMap) {
         }
     }
 }
-exports.checkForNearbyTiles = checkForNearbyTiles;
-function createOpenPaths(tile) {
+export function createOpenPaths(tile) {
     for (let direction in tile.paths) {
         if (tile.paths[direction] === false && Math.random() > 0.2) {
             tile.paths[direction] = true;
@@ -91,7 +80,6 @@ function createOpenPaths(tile) {
         }
     }
 }
-exports.createOpenPaths = createOpenPaths;
 function tidy(levelMap) {
     for (i = 0; i < levelMap.length; i++) {
         for (let direction in levelMap[i].paths) {

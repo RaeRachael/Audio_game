@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Player = void 0;
 const directionValues = {
     North: { x: 0, y: 1, opposite: "South", left: "West", right: "East" },
     South: { x: 0, y: -1, opposite: "North", left: "East", right: "West" },
@@ -27,5 +24,4 @@ export class Player {
         this.direction = directionValues[this.direction].right;
     }
 }
-exports.Player = Player;
 //# sourceMappingURL=player.js.map
