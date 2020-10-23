@@ -1,3 +1,4 @@
+import { Level } from "../level/level";
 
 type DirectionValues = {
   North: {x: number, y: number, "opposite":string, left: string, right: string},
@@ -14,6 +15,7 @@ const directionValues:DirectionValues = {
 }
 
 export class Player {
+  currentLevel: Level
   position: {x: number, y:number};
   direction: string;
 
@@ -22,14 +24,20 @@ export class Player {
     this.direction = "North"
   }
 
+  setLevel(newLevel: Level){
+    this.currentLevel = newLevel
+  }
+
   reset() {
     this.position = {x: 0, y: 0};
     this.direction = "North"
   }
 
   step() {
-    this.position.x += directionValues[this.direction].x
-    this.position.y += directionValues[this.direction].y
+    if (this.currentLevel.blockingDistance(this.position, this.direction) > 0) {
+      this.position.x += directionValues[this.direction].x
+      this.position.y += directionValues[this.direction].y
+    }
   }
 
   left() {

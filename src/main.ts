@@ -1,4 +1,5 @@
 import { Input } from "./input/input";
+import { LevelCreator } from "./level/levelCreator";
 import { Player } from "./player/player"
 
 document.addEventListener("DOMContentLoaded", setup);
@@ -17,8 +18,10 @@ export function mainLoop(currentTime) {
 }
 
 export function setup() {
+  var levelCreator = new LevelCreator
   var player = new Player
   var input = new Input(player)
+  player.setLevel(levelCreator.createLevel(2))
 }
 
 window.requestAnimationFrame(mainLoop)
