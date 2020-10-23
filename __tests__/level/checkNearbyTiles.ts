@@ -1,4 +1,4 @@
-import { checkForNearbyTiles } from "../../src/level/level"
+import { LevelCreator } from "../../src/level/levelCreator"
 
 describe( "function checkForNearbyTiles(tile)", function() {
   describe( "changes tile properties if a tile is nearby", function() {
@@ -17,8 +17,9 @@ describe( "function checkForNearbyTiles(tile)", function() {
         "numberOpenPaths": 0,
         "exitTile": false
       }
+      var levelCreator = new LevelCreator
 
-      checkForNearbyTiles(testTile, levelMap)
+      levelCreator.checkForNearbyTiles(testTile, levelMap)
 
       expect(testTile.paths.South).toEqual(true)
     })
@@ -39,7 +40,9 @@ describe( "function checkForNearbyTiles(tile)", function() {
         "exitTile": false
       }
 
-      checkForNearbyTiles(testTile, levelMap)
+      var levelCreator = new LevelCreator
+
+      levelCreator.checkForNearbyTiles(testTile, levelMap)
 
       expect(testTile.paths.South).toEqual(false)
     })
