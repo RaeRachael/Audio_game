@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var player_1 = require("../../src/player/player");
+const player_1 = require("../../src/player/player");
 var player = new player_1.Player;
-afterEach(function () {
+afterEach(() => {
     player.reset();
 });
 describe("Player()", function () {

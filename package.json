@@ -4,7 +4,7 @@
   "description": "audio only game",
   "main": "index.html",
   "scripts": {
-    "start": "http-server -p 3000",
+    "start": "http-server -p 3020",
     "test": "jest --coverage"
   },
   "author": "rachael ewins",

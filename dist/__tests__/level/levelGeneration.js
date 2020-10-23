@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var level_1 = require("../../src/level/level");
-beforeEach(function () {
+const level_1 = require("../../src/level/level");
+beforeEach(() => {
     jest.spyOn(global.Math, 'random').mockReturnValueOnce(0.8);
 });
-afterEach(function () {
+afterEach(() => {
     jest.spyOn(global.Math, 'random').mockRestore();
 });
 describe("function createLevel()", function () {

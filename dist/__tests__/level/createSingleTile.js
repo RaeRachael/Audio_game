@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var level_1 = require("../../src/level/level");
-beforeEach(function () {
+const level_1 = require("../../src/level/level");
+beforeEach(() => {
     jest.spyOn(global.Math, 'random').mockReturnValue(0.123456789);
 });
-afterEach(function () {
+afterEach(() => {
     jest.spyOn(global.Math, 'random').mockRestore();
 });
 describe("function createSingleTile(previousTile)", function () {
