@@ -24,7 +24,7 @@ export class Input {
     if (key == "ArrowLeft") {
       this.player.left()
     }
-    console.log(this.player.position)
-    console.log(this.player.direction)
+    console.log(this.player.position, this.player.direction)
+    console.log(this.player.currentLevel.levelMap)
   }
 }
