@@ -1,25 +1,5 @@
-type Position = {x: number, y: number}
-type Directions = {"North": boolean, "South": boolean, "East": boolean, "West": boolean}
-type Tile = {
-  position: Position
-  paths: Directions
-  openPaths: Directions
-  numberOpenPaths: number
-  exitTile: boolean
-}
-type DirectionValues = {
-  North: {x: number, y: number, "opposite":string},
-  South: {x: number, y: number, "opposite":string},
-  East: {x: number, y: number, "opposite":string},
-  West: {x: number, y: number, "opposite":string}
-}
-
-const directionValues:DirectionValues = { 
-  North: {x: 0, y: 1, opposite: "South"},
-  South: {x: 0, y: -1, opposite: "North"},
-  East: {x: 1, y: 0, opposite: "West"},
-  West: {x: -1, y: 0, opposite: "East"}
-}
+import { Position, Tile, directionValues } from "../helpers/typesAndConst"
+import { tileExistsAt, tileExistsAtOffset } from "../helpers/helpers"
 
 var i:number;
 var j:number;
@@ -47,6 +27,7 @@ function makeOneOpenPath(tile:Tile, levelMap:Tile[]) {
   for (let direction in tile.openPaths) {
     tile.paths[direction] = true
     tile.openPaths[direction] = true
+    
     for ( j = 0; j < levelMap.length; j++ ) {
       if (levelMap[j].position.x + directionValues[direction].x === tile.position.x
            && levelMap[j].position.y + directionValues[direction].y === tile.position.y) {
