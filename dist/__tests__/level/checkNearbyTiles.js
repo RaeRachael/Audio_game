@@ -1,4 +1,4 @@
-import { checkForNearbyTiles } from "../../src/level/level";
+import { LevelCreator } from "../../src/level/levelCreator";
 describe("function checkForNearbyTiles(tile)", function () {
     describe("changes tile properties if a tile is nearby", function () {
         it("makes a path true if nearby tile connects to it", function () {
@@ -16,7 +16,8 @@ describe("function checkForNearbyTiles(tile)", function () {
                 "numberOpenPaths": 0,
                 "exitTile": false
             };
-            checkForNearbyTiles(testTile, levelMap);
+            var levelCreator = new LevelCreator;
+            levelCreator.checkForNearbyTiles(testTile, levelMap);
             expect(testTile.paths.South).toEqual(true);
         });
         it("makes a path false if nearby tile does not connect to it", function () {
@@ -34,7 +35,8 @@ describe("function checkForNearbyTiles(tile)", function () {
                 "numberOpenPaths": 0,
                 "exitTile": false
             };
-            checkForNearbyTiles(testTile, levelMap);
+            var levelCreator = new LevelCreator;
+            levelCreator.checkForNearbyTiles(testTile, levelMap);
             expect(testTile.paths.South).toEqual(false);
         });
     });

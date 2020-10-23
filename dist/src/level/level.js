@@ -1,96 +1,26 @@
-import { directionValues } from "../helpers/typesAndConst.js";
-var i;
-var j;
-export function createLevel(number) {
-    var levelMap = [{
-            position: { "x": 0, "y": 0 },
-            paths: { "North": true, "South": true, "East": false, "West": false },
-            openPaths: { "North": true, "South": true, "East": false, "West": false },
-            numberOpenPaths: 2,
-            exitTile: false
-        }];
-    for (i = 0; i < Math.pow(number, 2) - 1; i++) {
-        if (i === levelMap.length - 1 && levelMap[i].numberOpenPaths === 0) {
-            makeOneOpenPath(levelMap[i], levelMap);
-        }
-        while (levelMap[i].numberOpenPaths > 0) {
-            levelMap.push(createSingleTile(levelMap[i], levelMap));
-        }
+import { directionValues } from "../helpers/typesAndConst";
+import { findCorrectTile } from "../helpers/helpers";
+export class Level {
+    constructor(levelMap) {
+        this.levelMap = levelMap;
     }
-    return tidy(levelMap);
-}
-function makeOneOpenPath(tile, levelMap) {
-    for (let direction in tile.openPaths) {
-        tile.paths[direction] = true;
-        tile.openPaths[direction] = true;
-        for (j = 0; j < levelMap.length; j++) {
-            if (levelMap[j].position.x + directionValues[direction].x === tile.position.x
-                && levelMap[j].position.y + directionValues[direction].y === tile.position.y) {
-                tile.paths[direction] = false;
-                tile.openPaths[direction] = false;
+    blockingDistance(location, testDirection, distance = 0) {
+        var tile = findCorrectTile(this.levelMap, location);
+        for (let direction in tile.paths) {
+            if (testDirection === direction.toString()) {
+                if (tile.paths[direction] === false) {
+                    break;
+                }
+                else {
+                    var nexLocation = {
+                        x: location.x + directionValues[direction].x,
+                        y: location.y + directionValues[direction].y
+                    };
+                    this.blockingDistance(nexLocation, testDirection, distance++);
+                }
             }
         }
-        if (tile.paths[direction] === true) {
-            tile.numberOpenPaths++;
-            break;
-        }
+        return distance;
     }
-}
-export function createSingleTile(previousTile, levelMap) {
-    var singleTile = {
-        position: { "x": 0, "y": 0 },
-        paths: { "North": false, "South": false, "East": false, "West": false },
-        openPaths: { "North": false, "South": false, "East": false, "West": false },
-        numberOpenPaths: 0,
-        exitTile: false
-    };
-    var openPathValue = { x: 0, y: 0 };
-    for (let direction in previousTile.openPaths) {
-        if (previousTile.openPaths[direction]) {
-            openPathValue.x = directionValues[direction].x;
-            openPathValue.y = directionValues[direction].y;
-            singleTile.paths[directionValues[direction].opposite] = true;
-            previousTile.openPaths[direction] = false;
-            previousTile.numberOpenPaths--;
-            break;
-        }
-    }
-    singleTile.position.x = previousTile.position.x + openPathValue.x;
-    singleTile.position.y = previousTile.position.y + openPathValue.y;
-    checkForNearbyTiles(singleTile, levelMap);
-    createOpenPaths(singleTile);
-    return singleTile;
-}
-export function checkForNearbyTiles(tile, levelMap) {
-    for (let direction in tile.openPaths) {
-        for (j = 0; j < levelMap.length; j++) {
-            if (levelMap[j].position.x + directionValues[direction].x === tile.position.x
-                && levelMap[j].position.y + directionValues[direction].y === tile.position.y) {
-                tile.paths[directionValues[direction].opposite] = levelMap[j].paths[direction];
-            }
-        }
-    }
-}
-export function createOpenPaths(tile) {
-    for (let direction in tile.paths) {
-        if (tile.paths[direction] === false && Math.random() > 0.2) {
-            tile.paths[direction] = true;
-            tile.openPaths[direction] = true;
-            tile.numberOpenPaths++;
-        }
-    }
-}
-function tidy(levelMap) {
-    for (i = 0; i < levelMap.length; i++) {
-        for (let direction in levelMap[i].paths) {
-            if (levelMap[i].openPaths[direction] === true) {
-                levelMap[i].paths[direction] = false;
-                levelMap[i].openPaths[direction] = false;
-                levelMap[i].numberOpenPaths--;
-            }
-        }
-    }
-    levelMap[levelMap.length - 1].exitTile = true;
-    return levelMap;
 }
 //# sourceMappingURL=level.js.map

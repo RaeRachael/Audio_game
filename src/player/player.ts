@@ -1,3 +1,4 @@
+import { findCorrectTile } from "../helpers/helpers";
 import { Level } from "../level/level";
 
 type DirectionValues = {
@@ -37,6 +38,10 @@ export class Player {
     if (this.currentLevel.blockingDistance(this.position, this.direction) > 0) {
       this.position.x += directionValues[this.direction].x
       this.position.y += directionValues[this.direction].y
+    }
+    console.log("path forward: ", this.currentLevel.blockingDistance(this.position, this.direction))
+    if (findCorrectTile(this.currentLevel.levelMap, this.position).exitTile) {
+      console.log("*** EXIT TILE ***")
     }
   }
 

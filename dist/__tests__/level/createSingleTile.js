@@ -1,4 +1,4 @@
-import { createSingleTile } from "../../src/level/level";
+import { LevelCreator } from "../../src/level/levelCreator";
 beforeEach(() => {
     jest.spyOn(global.Math, 'random').mockReturnValue(0.123456789);
 });
@@ -14,8 +14,9 @@ describe("function createSingleTile(previousTile)", function () {
         "exitTile": false
     };
     var levelMap = [previousTile];
+    var levelCreator = new LevelCreator;
     it("creates a non exitTile", function () {
-        var secondTile = createSingleTile(previousTile, levelMap);
+        var secondTile = levelCreator.createSingleTile(previousTile, levelMap);
         expect(secondTile.exitTile).toEqual(false);
     });
     describe("created tile has correct position and return path based on the openPath", function () {
@@ -24,7 +25,7 @@ describe("function createSingleTile(previousTile)", function () {
             previousTile.paths = { "North": true, "South": false, "East": false, "West": false };
             previousTile.openPaths = { "North": true, "South": false, "East": false, "West": false };
             var levelMap = [previousTile];
-            var secondTile = createSingleTile(previousTile, levelMap);
+            var secondTile = levelCreator.createSingleTile(previousTile, levelMap);
             expect(secondTile.position).toEqual({ x: 0, y: 1 });
             expect(secondTile.paths.South).toEqual(true);
         });
@@ -33,7 +34,7 @@ describe("function createSingleTile(previousTile)", function () {
             previousTile.paths = { "North": false, "South": false, "East": true, "West": false };
             previousTile.openPaths = { "North": false, "South": false, "East": true, "West": false };
             var levelMap = [previousTile];
-            var secondTile = createSingleTile(previousTile, levelMap);
+            var secondTile = levelCreator.createSingleTile(previousTile, levelMap);
             expect(secondTile.position).toEqual({ x: 1, y: 0 });
             expect(secondTile.paths.West).toEqual(true);
         });
@@ -42,7 +43,7 @@ describe("function createSingleTile(previousTile)", function () {
             previousTile.paths = { "North": false, "South": true, "East": false, "West": false };
             previousTile.openPaths = { "North": false, "South": true, "East": false, "West": false };
             var levelMap = [previousTile];
-            var secondTile = createSingleTile(previousTile, levelMap);
+            var secondTile = levelCreator.createSingleTile(previousTile, levelMap);
             expect(secondTile.position).toEqual({ x: 1, y: 0 });
         });
         it("the second tile is at '0,1' if openPath is 'West'", function () {
@@ -50,7 +51,8 @@ describe("function createSingleTile(previousTile)", function () {
             previousTile.paths = { "North": false, "South": false, "East": false, "West": true };
             previousTile.openPaths = { "North": false, "South": false, "East": false, "West": true };
             var levelMap = [previousTile];
-            var secondTile = createSingleTile(previousTile, levelMap);
+            var levelCreator = new LevelCreator;
+            var secondTile = levelCreator.createSingleTile(previousTile, levelMap);
             expect(secondTile.position).toEqual({ x: 0, y: 1 });
         });
         describe("multiple open paths of a tile", function () {
@@ -59,9 +61,9 @@ describe("function createSingleTile(previousTile)", function () {
                 previousTile.paths = { "North": true, "South": true, "East": false, "West": false };
                 previousTile.openPaths = { "North": true, "South": true, "East": false, "West": false };
                 var levelMap = [previousTile];
-                var secondTile = createSingleTile(previousTile, levelMap);
+                var secondTile = levelCreator.createSingleTile(previousTile, levelMap);
                 expect(secondTile.position).toEqual({ x: 1, y: 2 });
-                var thirdTile = createSingleTile(previousTile, levelMap);
+                var thirdTile = levelCreator.createSingleTile(previousTile, levelMap);
                 expect(thirdTile.position).toEqual({ x: 1, y: 0 });
             });
         });
@@ -72,7 +74,7 @@ describe("function createSingleTile(previousTile)", function () {
                 previousTile.paths = { "North": false, "South": false, "East": false, "West": true };
                 previousTile.openPaths = { "North": false, "South": false, "East": false, "West": true };
                 var levelMap = [previousTile];
-                var secondTile = createSingleTile(previousTile, levelMap);
+                var secondTile = levelCreator.createSingleTile(previousTile, levelMap);
                 expect(secondTile.position).toEqual({ x: -1, y: 0 });
                 expect(secondTile.numberOpenPaths).toEqual(3);
             });
@@ -82,7 +84,7 @@ describe("function createSingleTile(previousTile)", function () {
                 previousTile.paths = { "North": false, "South": false, "East": false, "West": true };
                 previousTile.openPaths = { "North": false, "South": false, "East": false, "West": true };
                 var levelMap = [previousTile];
-                var secondTile = createSingleTile(previousTile, levelMap);
+                var secondTile = levelCreator.createSingleTile(previousTile, levelMap);
                 expect(secondTile.position).toEqual({ x: -1, y: 0 });
                 expect(secondTile.numberOpenPaths).toEqual(0);
             });

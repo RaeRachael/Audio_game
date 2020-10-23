@@ -1,4 +1,4 @@
-import { blockingDistance } from "../../src/level/blockingdistance";
+import { Level } from "../../src/level/level";
 describe("function takes in a location and direction", function () {
     it("returns 0 if no path is in that direction", function () {
         var levelMap = [{
@@ -8,10 +8,11 @@ describe("function takes in a location and direction", function () {
                 "numberOpenPaths": 0,
                 "exitTile": false
             }];
-        expect(blockingDistance(levelMap, { x: 0, y: 0 }, "North")).toEqual(0);
-        expect(blockingDistance(levelMap, { x: 0, y: 0 }, "South")).toEqual(0);
-        expect(blockingDistance(levelMap, { x: 0, y: 0 }, "East")).toEqual(0);
-        expect(blockingDistance(levelMap, { x: 0, y: 0 }, "West")).toEqual(0);
+        var level = new Level(levelMap);
+        expect(level.blockingDistance({ x: 0, y: 0 }, "North")).toEqual(0);
+        expect(level.blockingDistance({ x: 0, y: 0 }, "South")).toEqual(0);
+        expect(level.blockingDistance({ x: 0, y: 0 }, "East")).toEqual(0);
+        expect(level.blockingDistance({ x: 0, y: 0 }, "West")).toEqual(0);
     });
     it("returns 1 if one path is in that direction", function () {
         var levelMap = [{
@@ -28,10 +29,11 @@ describe("function takes in a location and direction", function () {
                 "numberOpenPaths": 0,
                 "exitTile": false
             }];
-        expect(blockingDistance(levelMap, { x: 0, y: 0 }, "North")).toEqual(1);
-        expect(blockingDistance(levelMap, { x: 0, y: 0 }, "South")).toEqual(0);
-        expect(blockingDistance(levelMap, { x: 0, y: 0 }, "East")).toEqual(0);
-        expect(blockingDistance(levelMap, { x: 0, y: 0 }, "West")).toEqual(0);
+        var level = new Level(levelMap);
+        expect(level.blockingDistance({ x: 0, y: 0 }, "North")).toEqual(1);
+        expect(level.blockingDistance({ x: 0, y: 0 }, "South")).toEqual(0);
+        expect(level.blockingDistance({ x: 0, y: 0 }, "East")).toEqual(0);
+        expect(level.blockingDistance({ x: 0, y: 0 }, "West")).toEqual(0);
     });
 });
 //# sourceMappingURL=blockingDistance.js.map

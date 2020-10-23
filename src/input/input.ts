@@ -13,8 +13,7 @@ export class Input {
     window.addEventListener("keydown", e => { this.keyResponse(e.key); });
   }
 
-  keyResponse(key : String){
-    console.log(key)
+  keyResponse(key: String){
     if (key == "ArrowUp") {
       this.player.step()
     }
@@ -25,6 +24,6 @@ export class Input {
       this.player.left()
     }
     console.log(this.player.position, this.player.direction)
-    console.log(this.player.currentLevel.levelMap)
+    console.log(this.player.currentLevel.levelMap, "map")
   }
 }
