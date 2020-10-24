@@ -1,4 +1,5 @@
 import { Audio } from "../audio/audio";
+import { beginMainLoop } from "../main";
 import { Player } from "../player/player";
 
 export class Input {
@@ -29,7 +30,7 @@ export class Input {
     console.log(this.player.currentLevel.levelMap, "map")
 
     if (key == "space") {
-      this.audio.playClick()
+      beginMainLoop()
     }
   }
 }
