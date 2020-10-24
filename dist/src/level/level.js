@@ -1,5 +1,5 @@
-import { directionValues } from "../helpers/typesAndConst";
-import { findCorrectTile } from "../helpers/helpers";
+import { directionValues } from "../helpers/typesAndConst.js";
+import { findCorrectTile } from "../helpers/helpers.js";
 export class Level {
     constructor(levelMap) {
         this.levelMap = levelMap;

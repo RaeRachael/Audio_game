@@ -1,4 +1,4 @@
-import { findCorrectTile } from "../helpers/helpers";
+import { findCorrectTile } from "../helpers/helpers.js";
 const directionValues = {
     North: { x: 0, y: 1, opposite: "South", left: "West", right: "East" },
     South: { x: 0, y: -1, opposite: "North", left: "East", right: "West" },
