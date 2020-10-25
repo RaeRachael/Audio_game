@@ -12,6 +12,8 @@ Have create a script to generate new levels of various length
  echos created by left, right and forward wall distance - volume, pitch and delay
  exit tile has a different pitch response
 
+ need to make a split for each step, split for echo, and then split for left, right and forward echoes?? 
+
 ## Start Screen
   shows " " to play (maybe pause)
   number of levels to play in the game - option

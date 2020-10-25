@@ -1,4 +1,4 @@
-import { beginMainLoop } from "../main.js";
+import { beginMainLoop } from "../main";
 export class Input {
     constructor(player) {
         this.player = player;
@@ -7,6 +7,7 @@ export class Input {
         window.addEventListener("keydown", e => { this.keyResponse(e.key); });
     }
     keyResponse(key) {
+        // this.audio ||= new Audio
         console.log(key);
         if (key == "ArrowUp") {
             this.player.step();

@@ -15,7 +15,7 @@ export class Input {
   }
 
   keyResponse(key: String){
-    this.audio ||= new Audio
+    // this.audio ||= new Audio
     console.log(key)
     if (key == "ArrowUp") {
       this.player.step()
@@ -29,7 +29,7 @@ export class Input {
     console.log(this.player.position, this.player.direction)
     console.log(this.player.currentLevel.levelMap, "map")
 
-    if (key == "space") {
+    if (key == " ") {
       beginMainLoop()
     }
   }
