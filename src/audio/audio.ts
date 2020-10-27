@@ -1,7 +1,7 @@
 import { Echo } from "./echo"
 
 export class Audio {
-  audioContext
+  audioContext: AudioContext
   audioElement
   click
 
@@ -25,6 +25,7 @@ export class Audio {
     }
     this.click.connect(this.audioContext.destination);
     this.audioElement.play()
+    // this.click.disconnect(this.audioContext.destination)
   }
 
   buildEcho(left, right, forward) {
@@ -37,20 +38,4 @@ export class Audio {
   }
 
 }
-    
-
-    // const channelsCount = 2; // or read from: 'audioSource.channelCount'
-
-    // const splitterNode = new ChannelSplitterNode(audioContext, { numberOfOutputs: channelsCount });
-    // const mergerNode = new ChannelMergerNode(audioContext, { numberOfInputs: channelsCount });
-
-    // audioSource.connect(splitterNode);
-
-    // splitterNode.connect(volumeNodeL, 0); // connect OUTPUT channel 0
-    // splitterNode.connect(volumeNodeR, 1); // connect OUTPUT channel 1
-
-    // volumeNodeL.connect(mergerNode, 0, 0); // connect INPUT channel 0
-    // volumeNodeR.connect(mergerNode, 0, 1); // connect INPUT channel 1
-
-    // mergerNode.connect(audioContext.destination);
 

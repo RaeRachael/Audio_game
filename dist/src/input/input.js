@@ -1,4 +1,3 @@
-import { beginMainLoop } from "../main.js";
 export class Input {
     constructor(player) {
         this.player = player;
@@ -20,9 +19,9 @@ export class Input {
         }
         console.log(this.player.position, this.player.direction);
         console.log(this.player.currentLevel.levelMap, "map");
-        if (key == " ") {
-            beginMainLoop();
-        }
+        // if (key == " ") {
+        //   beginMainLoop()
+        // }
     }
 }
 //# sourceMappingURL=input.js.map

@@ -18,14 +18,19 @@ export class Echo {
   }
 
   addEchoValues(distance) {
-    this.echoDelay = this.audioContext.createDelay()
-    this.echoDelay.delayTime.value = distance/10
-    this.echoGain = this.audioContext.createGain()
-    this.echoGain.gain.value = (0.5 * 1 / distance)
-    this.echoDelayOpposite = this.audioContext.createDelay()
-    this.echoDelayOpposite.delayTime.value = distance/100 + 1/1000
-    this.echoGainOpposite = this.audioContext.createGain()
-    this.echoGain.gain.value = (0.2 / distance)
+    if ( distance > 0) {
+      this.echoDelay = this.audioContext.createDelay()
+      this.echoDelay.delayTime.value = distance/10
+      this.echoGain = this.audioContext.createGain()
+      this.echoGain.gain.value = (0.8 / (2 * distance)**5)
+      this.echoDelayOpposite = this.audioContext.createDelay()
+      this.echoDelayOpposite.delayTime.value = distance/10 + 1/1000
+      this.echoGainOpposite = this.audioContext.createGain()
+      this.echoGainOpposite.gain.value = (0.1 / (2 * distance)**5)
+    } else {
+      this.echoGain.gain.value = 0
+      this.echoGainOpposite.gain.value = 0
+    }
   }
 
   connectEcho(){
@@ -34,9 +39,18 @@ export class Echo {
     this.echoGain.connect(this.panNode)
     this.panNode.connect(this.audioContext.destination)
     this.click.connect(this.echoDelayOpposite)
-    this.echoDelayOpposite.connect(this.echoGainOpposite)
-    this.echoGainOpposite.connect(this.panNodeOpposite)
-    this.panNodeOpposite.connect(this.audioContext.destination)
+    if (this.panNode.pan.value != 0) {
+      this.echoDelayOpposite.connect(this.echoGainOpposite)
+      this.echoGainOpposite.connect(this.panNodeOpposite)
+      this.panNodeOpposite.connect(this.audioContext.destination)
+    }
   }
+
+  // disconnectEcho() {
+  //   this.panNode.disconnect(this.audioContext.destination)
+  //   if (this.panNode.pan.value !=0) {
+  //     this.panNodeOpposite.disconnect(this.audioContext.destination)
+  //   }
+  // }
 
 }
