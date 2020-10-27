@@ -23,6 +23,6 @@ export class Level{
         }
       }
     }
-    return distance
+    return (distance + 0.5)
   }
 }

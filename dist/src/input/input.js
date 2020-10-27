@@ -1,4 +1,4 @@
-import { beginMainLoop } from "../main";
+import { beginMainLoop } from "../main.js";
 export class Input {
     constructor(player) {
         this.player = player;

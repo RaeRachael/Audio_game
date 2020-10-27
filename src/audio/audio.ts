@@ -13,9 +13,9 @@ export class Audio {
     this.audioContext = new AudioContext();
     this.audioElement = document.querySelector('audio');
     this.click = this.audioContext.createMediaElementSource(this.audioElement);
-    this.leftSignal = new Echo(this.audioContext)
-    this.rightSignal = new Echo(this.audioContext)
-    this.forwardSignal = new Echo(this.audioContext)
+    this.leftSignal = new Echo(this.audioContext, this.click, -1)
+    this.rightSignal = new Echo(this.audioContext, this.click, 1)
+    this.forwardSignal = new Echo(this.audioContext, this.click, 0)
   }
   
   playClick() {
@@ -27,10 +27,13 @@ export class Audio {
     this.audioElement.play()
   }
 
-  buildEcho() {
-    this.leftSignal.addEchoValues(1)
-    this.rightSignal.addEchoValues(3)
-    this.forwardSignal.addEchoValues(5)
+  buildEcho(left, right, forward) {
+    this.leftSignal.addEchoValues(left)
+    this.leftSignal.connectEcho()
+    this.rightSignal.addEchoValues(right)
+    this.rightSignal.connectEcho()
+    this.forwardSignal.addEchoValues(forward)
+    this.forwardSignal.connectEcho()
   }
 
 }

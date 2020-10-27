@@ -10,6 +10,9 @@ export class Player {
         this.position = { x: 0, y: 0 };
         this.direction = "North";
     }
+    addAudio(audio) {
+        this.audio = audio;
+    }
     setLevel(newLevel) {
         this.currentLevel = newLevel;
     }
@@ -18,7 +21,7 @@ export class Player {
         this.direction = "North";
     }
     step() {
-        if (this.currentLevel.blockingDistance(this.position, this.direction) > 0) {
+        if (this.currentLevel.blockingDistance(this.position, this.direction) >= 1) {
             this.position.x += directionValues[this.direction].x;
             this.position.y += directionValues[this.direction].y;
         }

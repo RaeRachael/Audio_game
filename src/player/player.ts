@@ -1,3 +1,4 @@
+import { Audio } from "../audio/audio";
 import { findCorrectTile } from "../helpers/helpers";
 import { Level } from "../level/level";
 
@@ -19,10 +20,15 @@ export class Player {
   currentLevel: Level
   position: {x: number, y:number};
   direction: string;
+  audio: Audio;
 
   constructor() {
     this.position = {x: 0, y: 0};
     this.direction = "North"
+  }
+
+  addAudio(audio: Audio) {
+    this.audio = audio
   }
 
   setLevel(newLevel: Level){
@@ -35,7 +41,7 @@ export class Player {
   }
 
   step() {
-    if (this.currentLevel.blockingDistance(this.position, this.direction) > 0) {
+    if (this.currentLevel.blockingDistance(this.position, this.direction) >= 1) {
       this.position.x += directionValues[this.direction].x
       this.position.y += directionValues[this.direction].y
     }

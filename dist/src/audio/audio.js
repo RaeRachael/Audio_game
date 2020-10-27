@@ -1,12 +1,12 @@
-import { Echo } from "./echo";
+import { Echo } from "./echo.js";
 export class Audio {
     constructor() {
         this.audioContext = new AudioContext();
         this.audioElement = document.querySelector('audio');
         this.click = this.audioContext.createMediaElementSource(this.audioElement);
-        this.leftSignal = new Echo(this.audioContext);
-        this.rightSignal = new Echo(this.audioContext);
-        this.forwardSignal = new Echo(this.audioContext);
+        this.leftSignal = new Echo(this.audioContext, this.click, -1);
+        this.rightSignal = new Echo(this.audioContext, this.click, 1);
+        this.forwardSignal = new Echo(this.audioContext, this.click, 0);
     }
     playClick() {
         console.log("play called");
@@ -16,10 +16,13 @@ export class Audio {
         this.click.connect(this.audioContext.destination);
         this.audioElement.play();
     }
-    buildEcho() {
-        this.leftSignal.addEchoValues(1);
-        this.rightSignal.addEchoValues(3);
-        this.forwardSignal.addEchoValues(5);
+    buildEcho(left, right, forward) {
+        this.leftSignal.addEchoValues(left);
+        this.leftSignal.connectEcho();
+        this.rightSignal.addEchoValues(right);
+        this.rightSignal.connectEcho();
+        this.forwardSignal.addEchoValues(forward);
+        this.forwardSignal.connectEcho();
     }
 }
 // const channelsCount = 2; // or read from: 'audioSource.channelCount'
