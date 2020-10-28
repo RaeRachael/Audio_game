@@ -1,4 +1,4 @@
-import { Echo } from "./echo.js";
+import { Echo } from "./echo";
 export class Audio {
     constructor() {
         this.stepDelayTime = 0.5;
@@ -19,7 +19,6 @@ export class Audio {
         this.stepDelay.connect(this.stepDelayGain);
     }
     secondClickAudio(left, right, forward) {
-        this.disconnect();
         this.buildEcho(left, right, forward);
         this.buildSecondEcho(left, right, forward);
         this.stepDelayGain.gain.value = 1;
@@ -27,17 +26,10 @@ export class Audio {
         this.playClick();
     }
     audioSequence(left, right, forward) {
-        this.disconnect();
         this.buildEcho(left, right, forward);
         this.buildSecondEcho(0, 0, 0);
         this.stepDelayGain.gain.value = 0;
         this.playClick();
-    }
-    disconnect() {
-        this.click.disconnect(this.audioContext.destination);
-        this.leftSignal.disconnectEcho();
-        this.rightSignal.disconnectEcho();
-        this.leftSignal.disconnectEcho();
     }
     playClick() {
         this.audioElement.pause();

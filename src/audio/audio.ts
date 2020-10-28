@@ -35,7 +35,6 @@ export class Audio {
   }
 
   secondClickAudio(left: number, right: number, forward: number) {
-    this.disconnect()
     this.buildEcho(left, right, forward)
     this.buildSecondEcho(left, right, forward)
     this.stepDelayGain.gain.value = 1
@@ -44,18 +43,10 @@ export class Audio {
   }
 
   audioSequence(left: number, right: number, forward: number) {
-    this.disconnect()
     this.buildEcho(left, right, forward)
     this.buildSecondEcho(0, 0, 0)
     this.stepDelayGain.gain.value = 0
     this.playClick()
-  }
-
-  disconnect() {
-    this.click.disconnect(this.audioContext.destination)
-    this.leftSignal.disconnectEcho()
-    this.rightSignal.disconnectEcho()
-    this.leftSignal.disconnectEcho()
   }
   
   playClick() {

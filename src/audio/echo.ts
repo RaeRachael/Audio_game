@@ -7,7 +7,7 @@ export class Echo {
   panNodeOpposite: StereoPannerNode
   echoDelayOpposite: DelayNode
   echoGainOpposite: GainNode
-  click
+  click: MediaElementAudioSourceNode
   defaultGain: number
 
   constructor(audioContext: AudioContext, click: MediaElementAudioSourceNode, pan: number, delay: number = 0) {
@@ -55,13 +55,6 @@ export class Echo {
       this.echoGainOpposite.connect(this.panNodeOpposite)
       this.panNodeOpposite.connect(this.audioContext.destination)
     }
-  }
-
-  disconnectEcho() {
-    // this.panNode.disconnect(this.audioContext.destination)
-    // if (this.panNode.pan.value !=0) {
-    //   this.panNodeOpposite.disconnect(this.audioContext.destination)
-    // }
   }
 
 }

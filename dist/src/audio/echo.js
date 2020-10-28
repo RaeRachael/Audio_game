@@ -44,11 +44,5 @@ export class Echo {
             this.panNodeOpposite.connect(this.audioContext.destination);
         }
     }
-    disconnectEcho() {
-        // this.panNode.disconnect(this.audioContext.destination)
-        // if (this.panNode.pan.value !=0) {
-        //   this.panNodeOpposite.disconnect(this.audioContext.destination)
-        // }
-    }
 }
 //# sourceMappingURL=echo.js.map

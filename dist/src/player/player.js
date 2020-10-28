@@ -1,5 +1,5 @@
-import { findCorrectTile } from "../helpers/helpers.js";
-import { directionValues } from "../helpers/typesAndConst.js";
+import { findCorrectTile } from "../helpers/helpers";
+import { directionValues } from "../helpers/typesAndConst";
 export class Player {
     constructor() {
         this.position = { x: 0, y: 0 };
