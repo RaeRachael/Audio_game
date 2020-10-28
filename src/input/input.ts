@@ -4,6 +4,7 @@ import { Player } from "../player/player";
 export class Input {
   player: Player;
   audio: Audio
+  active: Boolean = false;
 
   constructor(player) {
     this.player = player
@@ -14,17 +15,24 @@ export class Input {
   }
 
   keyResponse(key: String){
-    console.log(key)
-    if (key == "ArrowUp") {
-      this.player.step()
+    if (this.active){
+      console.log(key)
+      if (key == "ArrowUp") {
+        this.player.step()
+      }
+      if (key == "ArrowRight") {
+        this.player.right()
+      }
+      if (key == "ArrowLeft") {
+        this.player.left()
+      }
+      console.log(this.player.position, this.player.direction)
+      console.log(this.player.currentLevel.levelMap, "map")
+    } else {
+      if (key == " ") {
+        this.active = true
+        this.player.firstSound()
+      }
     }
-    if (key == "ArrowRight") {
-      this.player.right()
-    }
-    if (key == "ArrowLeft") {
-      this.player.left()
-    }
-    console.log(this.player.position, this.player.direction)
-    console.log(this.player.currentLevel.levelMap, "map")
   }
 }

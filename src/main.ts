@@ -1,5 +1,4 @@
 import { Audio } from "./audio/audio";
-// import { directionValues } from "./helpers/typesAndConst";
 import { Input } from "./input/input";
 import { LevelCreator } from "./level/levelCreator";
 import { Player } from "./player/player"

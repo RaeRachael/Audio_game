@@ -7,6 +7,7 @@ export class Echo {
   echoDelayOpposite: DelayNode
   echoGainOpposite: GainNode
   click
+  defaultGain: number
 
   constructor(audioContext: AudioContext, click, pan: number) {
     this.audioContext = audioContext
@@ -14,6 +15,7 @@ export class Echo {
     this.panNode.pan.value = pan
     this.panNodeOpposite = audioContext.createStereoPanner()
     this.panNodeOpposite.pan.value = pan * - 1
+    this.defaultGain = 0.8 / (2 - pan**2) //half for forward
     this.click = click
     this.echoDelay = this.audioContext.createDelay();
     this.echoGain = this.audioContext.createGain();
@@ -25,9 +27,9 @@ export class Echo {
   addEchoValues(distance) {
     if ( distance > 0) {
       this.echoDelay.delayTime.value = distance/10
-      this.echoGain.gain.value = (0.8 / (2 * distance)**2)
+      this.echoGain.gain.value = (this.defaultGain / (2 * distance)**2)
       this.echoDelayOpposite.delayTime.value = distance/10 + 1/1000
-      this.echoGainOpposite.gain.value = (0.1 / (2 * distance)**2)
+      this.echoGainOpposite.gain.value = this.echoGain.gain.value/10
     } else {
       this.echoDelay.delayTime.value = 0
       this.echoGain.gain.value = 0
@@ -51,11 +53,11 @@ export class Echo {
     }
   }
 
-  // disconnectEcho() {
-  //   this.panNode.disconnect(this.audioContext.destination)
-  //   if (this.panNode.pan.value !=0) {
-  //     this.panNodeOpposite.disconnect(this.audioContext.destination)
-  //   }
-  // }
+  disconnectEcho() {
+    // this.panNode.disconnect(this.audioContext.destination)
+    // if (this.panNode.pan.value !=0) {
+    //   this.panNodeOpposite.disconnect(this.audioContext.destination)
+    // }
+  }
 
 }

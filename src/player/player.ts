@@ -31,11 +31,10 @@ export class Player {
     if (this.currentLevel.blockingDistance(this.position, this.direction) != 0.5) {
       this.position.x += directionValues[this.direction].x
       this.position.y += directionValues[this.direction].y
-      this.makeEcho()
+      this.triggerAudio()
     } else {
-      this.audio.buildEcho(0,0,0)
+      this.audio.audioSequence(0, 0, 0)
     }
-      this.audio.playClick()
     console.log("path forward: ", this.currentLevel.blockingDistance(this.position, this.direction))
     if (findCorrectTile(this.currentLevel.levelMap, this.position).exitTile) {
       console.log("*** EXIT TILE ***")
@@ -44,23 +43,31 @@ export class Player {
 
   left() {
     this.direction = directionValues[this.direction].left
-    this.makeEcho()
-    this.audio.playClick()
+    this.triggerAudio()
   }
 
   right() {
     this.direction = directionValues[this.direction].right
-    this.makeEcho()
-    this.audio.playClick()
+    this.triggerAudio()
   }
 
-  makeEcho() {
+  triggerAudio() {
+    var left = directionValues[this.direction].left
+    var distanceLeft = this.currentLevel.blockingDistance(this.position, left)
+    var right = directionValues[this.direction].right
+    var distanceRight = this.currentLevel.blockingDistance(this.position, right)
+    var distanceForward = this.currentLevel.blockingDistance(this.position, this.direction)
+    this.audio.audioSequence(distanceLeft, distanceRight, distanceForward)
+  }
+
+  firstSound() {
     var left = directionValues[this.direction].left
     var distanceLeft = this.currentLevel.blockingDistance(this.position, left)
     var right = directionValues[this.direction].right
     var distanceRight = this.currentLevel.blockingDistance(this.position, right)
     var distanceForward = this.currentLevel.blockingDistance(this.position, this.direction)
     this.audio.buildEcho(distanceLeft, distanceRight, distanceForward)
+    this.audio.playClick()
   }
 
 }

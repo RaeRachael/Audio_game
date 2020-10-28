@@ -1,8 +1,7 @@
-import { Audio } from "./audio/audio";
-// import { directionValues } from "./helpers/typesAndConst";
-import { Input } from "./input/input";
-import { LevelCreator } from "./level/levelCreator";
-import { Player } from "./player/player";
+import { Audio } from "./audio/audio.js";
+import { Input } from "./input/input.js";
+import { LevelCreator } from "./level/levelCreator.js";
+import { Player } from "./player/player.js";
 document.addEventListener("DOMContentLoaded", setup);
 export function setup() {
     var levelCreator = new LevelCreator;
