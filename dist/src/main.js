@@ -1,22 +1,42 @@
+import { Audio } from "./audio/audio.js";
+// import { directionValues } from "./helpers/typesAndConst";
 import { Input } from "./input/input.js";
 import { LevelCreator } from "./level/levelCreator.js";
 import { Player } from "./player/player.js";
 document.addEventListener("DOMContentLoaded", setup);
-let lastStepTime = 0;
-let PLAYER_MOVEMENT_SPEED = 10;
-export function mainLoop(currentTime) {
-    const timePassedSinceStep = (currentTime - lastStepTime) / 1000;
-    window.requestAnimationFrame(mainLoop);
-    if (timePassedSinceStep > (1 / (PLAYER_MOVEMENT_SPEED))) {
-        lastStepTime = currentTime;
-        // console.log("tick", lastStepTime)
-    }
-}
+// let lastStepTime = 0
+// let PLAYER_MOVEMENT_SPEED = 0.25
+let audio;
+let player;
+let currentLevel;
+// export function attachAudio() {
+//   audio = new Audio
+//   player.addAudio(audio)
+// }
+//   window.requestAnimationFrame(mainLoop)
+// }
+// export function mainLoop(currentTime) {
+//   const timePassedSinceStep = (currentTime - lastStepTime)/1000
+//   window.requestAnimationFrame(mainLoop)
+//   if (timePassedSinceStep > (1 / (PLAYER_MOVEMENT_SPEED))) {
+//     lastStepTime = currentTime
+//     var left = directionValues[player.direction].left
+//     var distanceLeft = player.currentLevel.blockingDistance(player.position, left)
+//     var right = directionValues[player.direction].right
+//     var distanceRight = player.currentLevel.blockingDistance(player.position, right)
+//     var distanceForward = player.currentLevel.blockingDistance(player.position, player.direction)
+//     player.audio.buildEcho(distanceLeft, distanceRight, distanceForward)
+//     player.audio.playClick()
+//     console.log("click")
+//   }
+// }
 export function setup() {
     var levelCreator = new LevelCreator;
-    var player = new Player;
+    player = new Player;
     var input = new Input(player);
-    player.setLevel(levelCreator.createLevel(2));
+    currentLevel = levelCreator.createLevel(2);
+    player.setLevel(currentLevel);
+    audio = new Audio;
+    player.addAudio(audio);
 }
-window.requestAnimationFrame(mainLoop);
 //# sourceMappingURL=main.js.map

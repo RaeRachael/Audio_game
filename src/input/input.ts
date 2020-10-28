@@ -1,9 +1,10 @@
+import { Audio } from "../audio/audio";
+// import { beginMainLoop } from "../main";
 import { Player } from "../player/player";
-
-
 
 export class Input {
   player: Player;
+  audio: Audio
 
   constructor(player) {
     this.player = player
@@ -14,6 +15,8 @@ export class Input {
   }
 
   keyResponse(key: String){
+    // this.audio ||= new Audio
+    console.log(key)
     if (key == "ArrowUp") {
       this.player.step()
     }
@@ -25,5 +28,9 @@ export class Input {
     }
     console.log(this.player.position, this.player.direction)
     console.log(this.player.currentLevel.levelMap, "map")
+
+    // if (key == " ") {
+    //   beginMainLoop()
+    // }
   }
 }

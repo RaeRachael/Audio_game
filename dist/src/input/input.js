@@ -6,6 +6,8 @@ export class Input {
         window.addEventListener("keydown", e => { this.keyResponse(e.key); });
     }
     keyResponse(key) {
+        // this.audio ||= new Audio
+        console.log(key);
         if (key == "ArrowUp") {
             this.player.step();
         }
@@ -17,6 +19,9 @@ export class Input {
         }
         console.log(this.player.position, this.player.direction);
         console.log(this.player.currentLevel.levelMap, "map");
+        // if (key == " ") {
+        //   beginMainLoop()
+        // }
     }
 }
 //# sourceMappingURL=input.js.map
