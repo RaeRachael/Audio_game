@@ -20,9 +20,10 @@ export class Player {
             this.position.x += directionValues[this.direction].x;
             this.position.y += directionValues[this.direction].y;
             this.triggerAudio();
+            this.triggerSecondStepAudio();
         }
         else {
-            this.audio.audioSequence(0, 0, 0);
+            this.triggerAudio();
         }
         console.log("path forward: ", this.currentLevel.blockingDistance(this.position, this.direction));
         if (findCorrectTile(this.currentLevel.levelMap, this.position).exitTile) {
@@ -44,6 +45,14 @@ export class Player {
         var distanceRight = this.currentLevel.blockingDistance(this.position, right);
         var distanceForward = this.currentLevel.blockingDistance(this.position, this.direction);
         this.audio.audioSequence(distanceLeft, distanceRight, distanceForward);
+    }
+    triggerSecondStepAudio() {
+        var left = directionValues[this.direction].left;
+        var distanceLeft = this.currentLevel.blockingDistance(this.position, left);
+        var right = directionValues[this.direction].right;
+        var distanceRight = this.currentLevel.blockingDistance(this.position, right);
+        var distanceForward = this.currentLevel.blockingDistance(this.position, this.direction);
+        this.audio.secondClickAudio(distanceLeft, distanceRight, distanceForward);
     }
     firstSound() {
         var left = directionValues[this.direction].left;
