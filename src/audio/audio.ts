@@ -36,6 +36,5 @@ export class Audio {
     this.forwardSignal.addEchoValues(forward)
     this.forwardSignal.connectEcho()
   }
-
 }
 
