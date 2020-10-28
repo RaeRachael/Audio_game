@@ -25,7 +25,7 @@ export class Audio {
     }
     this.click.connect(this.audioContext.destination);
     this.audioElement.play()
-    // this.click.disconnect(this.audioContext.destination)
+    this.click.disconnect(this.audioContext.destination)
   }
 
   buildEcho(left, right, forward) {

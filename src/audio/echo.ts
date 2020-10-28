@@ -8,7 +8,7 @@ export class Echo {
   echoGainOpposite: GainNode
   click
 
-  constructor(audioContext, click, pan) {
+  constructor(audioContext: AudioContext, click, pan: number) {
     this.audioContext = audioContext
     this.panNode = audioContext.createStereoPanner()
     this.panNode.pan.value = pan
