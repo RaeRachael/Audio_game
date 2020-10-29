@@ -5,11 +5,11 @@
   "main": "index.html",
   "scripts": {
     "check-types": "tsc",
-    "start": "http-server -p 3034",
+    "start": "http-server -p 3006",
     "test": "jest --coverage"
   },
   "author": "rachael ewins",
-  "license": "ISC",
+  "license": "ISC", 
   "type": "module",
   "dependencies": {
     "@types/jest": "^26.0.14",

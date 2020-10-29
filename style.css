@@ -1,0 +1,10 @@
+body {
+  background-color: black;
+}
+
+#display_block {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

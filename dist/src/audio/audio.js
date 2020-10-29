@@ -22,7 +22,6 @@ export class Audio {
         this.buildEcho(left, right, forward);
         this.buildSecondEcho(left, right, forward);
         this.stepDelayGain.gain.value = 1;
-        this.stepDelayGain.connect(this.audioContext.destination);
         this.playClick();
     }
     audioSequence(left, right, forward) {
@@ -37,24 +36,27 @@ export class Audio {
         if (this.audioContext.state === 'suspended') {
             this.audioContext.resume();
         }
-        this.click.connect(this.audioContext.destination);
         this.audioElement.play();
     }
     buildEcho(left, right, forward) {
         this.leftSignal.addEchoValues(left);
-        this.leftSignal.connectEcho();
         this.rightSignal.addEchoValues(right);
-        this.rightSignal.connectEcho();
         this.forwardSignal.addEchoValues(forward);
-        this.forwardSignal.connectEcho();
     }
     buildSecondEcho(left, right, forward) {
         this.secondLeftSignal.addEchoValues(left);
-        this.secondLeftSignal.connectEcho();
         this.secondRightSignal.addEchoValues(right);
-        this.secondRightSignal.connectEcho();
         this.secondForwardSignal.addEchoValues(forward);
+    }
+    makeConnections() {
+        this.leftSignal.connectEcho();
+        this.rightSignal.connectEcho();
+        this.forwardSignal.connectEcho();
+        this.secondLeftSignal.connectEcho();
+        this.secondRightSignal.connectEcho();
         this.secondForwardSignal.connectEcho();
+        this.click.connect(this.audioContext.destination);
+        this.stepDelayGain.connect(this.audioContext.destination);
     }
 }
 //# sourceMappingURL=audio.js.map
