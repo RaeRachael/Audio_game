@@ -3,14 +3,17 @@ import { Input } from "./input/input";
 import { LevelCreator } from "./level/levelCreator";
 import { Player } from "./player/player"
 
+let input: Input
+let levelNumber: number = 0
+let player: Player
+let levelCreator: LevelCreator
+
 document.addEventListener("DOMContentLoaded", setup);
 
 export function setup() {
-  var levelCreator = new LevelCreator
-  var player = new Player
-  var input = new Input(player)
-  var currentLevel = levelCreator.createLevel(2)
-  player.setLevel(currentLevel)
+  levelCreator = new LevelCreator
+  player = new Player
+  input = new Input(player)
   var audio = new Audio
   player.addAudio(audio)
 }
@@ -18,4 +21,12 @@ export function setup() {
 export function displayText(text: string) {
   var displayBlock = document.getElementById("display_block")
   displayBlock.innerHTML = text
+  input.active = !input.active
+  if (input.active) {
+    levelNumber++
+    player.reset()
+    var currentLevel = levelCreator.createLevel(levelNumber)
+    player.setLevel(currentLevel)
+    console.log(levelNumber, currentLevel)
+  }
 }

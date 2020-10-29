@@ -22,7 +22,6 @@ export class Input {
         }
         else {
             if (key == " ") {
-                this.active = true;
                 displayText("");
                 this.player.firstSound();
             }
