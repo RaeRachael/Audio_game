@@ -36,7 +36,6 @@ export class Player {
     } else {
       this.triggerAudio()
     }
-    console.log("path forward: ", this.currentLevel.blockingDistance(this.position, this.direction))
     if (findCorrectTile(this.currentLevel.levelMap, this.position).exitTile) {
       console.log("*** EXIT TILE ***")
     }

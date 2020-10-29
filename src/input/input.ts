@@ -26,8 +26,6 @@ export class Input {
       if (key == "ArrowLeft") {
         this.player.left()
       }
-      console.log(this.player.position, this.player.direction)
-      console.log(this.player.currentLevel.levelMap, "map")
     } else {
       if (key == " ") {
         this.active = true

@@ -1,5 +1,5 @@
-import { findCorrectTile } from "../helpers/helpers";
-import { directionValues } from "../helpers/typesAndConst";
+import { findCorrectTile } from "../helpers/helpers.js";
+import { directionValues } from "../helpers/typesAndConst.js";
 export class Player {
     constructor() {
         this.position = { x: 0, y: 0 };
@@ -25,7 +25,6 @@ export class Player {
         else {
             this.triggerAudio();
         }
-        console.log("path forward: ", this.currentLevel.blockingDistance(this.position, this.direction));
         if (findCorrectTile(this.currentLevel.levelMap, this.position).exitTile) {
             console.log("*** EXIT TILE ***");
         }

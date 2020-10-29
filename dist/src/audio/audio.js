@@ -1,4 +1,4 @@
-import { Echo } from "./echo";
+import { Echo } from "./echo.js";
 export class Audio {
     constructor() {
         this.stepDelayTime = 0.5;
@@ -34,7 +34,6 @@ export class Audio {
     playClick() {
         this.audioElement.pause();
         this.audioElement.currentTime = 0;
-        console.log("play called");
         if (this.audioContext.state === 'suspended') {
             this.audioContext.resume();
         }

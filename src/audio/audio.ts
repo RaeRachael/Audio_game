@@ -52,7 +52,6 @@ export class Audio {
   playClick() {
     this.audioElement.pause()
     this.audioElement.currentTime = 0
-    console.log("play called")
     if (this.audioContext.state === 'suspended') {
       this.audioContext.resume();
     }

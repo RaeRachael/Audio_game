@@ -29,21 +29,19 @@ export class Echo {
 
   addEchoValues(distance) {
     if ( distance > 0) {
-      this.echoDelay.delayTime.value = distance/10
-      this.echoGain.gain.value = (this.defaultGain / (2 * distance)**2)
-      this.echoDelayOpposite.delayTime.value = distance/10 + 1/1000
-      this.echoGainOpposite.gain.value = this.echoGain.gain.value/10
+      this.echoDelay.delayTime.value = distance / 5;
+      this.echoGain.gain.value = (this.defaultGain / (2 * distance)**2 );
+      this.echoDelayOpposite.delayTime.value = distance / 10 + 1 / 1000;
+      this.echoGainOpposite.gain.value = this.echoGain.gain.value / 10;
     } else {
       this.echoDelay.delayTime.value = 0
       this.echoGain.gain.value = 0
       this.echoDelayOpposite.delayTime.value = 0
       this.echoGainOpposite.gain.value = 0
     }
-    console.log(this.echoGain.gain.value, distance)
   }
 
   connectEcho(){
-    console.log(this.echoGain.gain.value, "connect")
     this.click.connect(this.stepDelay)
     this.stepDelay.connect(this.echoDelay)
     this.echoDelay.connect(this.echoGain)

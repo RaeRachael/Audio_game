@@ -9,7 +9,7 @@ export function setup() {
   var levelCreator = new LevelCreator
   var player = new Player
   var input = new Input(player)
-  var currentLevel = levelCreator.createLevel(2)
+  var currentLevel = levelCreator.createLevel(4)
   player.setLevel(currentLevel)
   var audio = new Audio
   player.addAudio(audio)
