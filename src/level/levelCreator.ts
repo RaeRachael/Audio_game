@@ -91,7 +91,7 @@ export class LevelCreator {
 
   createOpenPaths(tile:Tile) {
     for( let direction in tile.paths) {
-      if (tile.paths[direction] === false && Math.random() > 0.2){
+      if (tile.paths[direction] === false && Math.random() > 0.5){
         tile.paths[direction] = true
         tile.openPaths[direction] = true
         tile.numberOpenPaths ++
