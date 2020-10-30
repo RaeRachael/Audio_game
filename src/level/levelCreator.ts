@@ -7,6 +7,8 @@ var j:number;
 
 export class LevelCreator {
 
+  branchingValue: number
+
   createLevel(number): Level {
     var levelMap: Tile[] = [ {
       position: {"x": 0, "y": 0},
@@ -91,7 +93,7 @@ export class LevelCreator {
 
   createOpenPaths(tile:Tile) {
     for( let direction in tile.paths) {
-      if (tile.paths[direction] === false && Math.random() > 0.5){
+      if (tile.paths[direction] === false && Math.random() > this.branchingValue){
         tile.paths[direction] = true
         tile.openPaths[direction] = true
         tile.numberOpenPaths ++

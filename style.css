@@ -1,0 +1,14 @@
+body {
+  background-color: black;
+}
+
+.horizontally_alone {
+  left: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+#display_block {
+  color: white;
+}

@@ -1,5 +1,6 @@
 import { Audio } from "../audio/audio";
 import { Player } from "../player/player";
+import { displayText } from "../main";
 
 export class Input {
   player: Player;
@@ -28,7 +29,7 @@ export class Input {
       }
     } else {
       if (key == " ") {
-        this.active = true
+        displayText("")
         this.player.firstSound()
       }
     }

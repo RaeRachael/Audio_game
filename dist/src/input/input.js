@@ -1,3 +1,4 @@
+import { displayText } from "../main.js";
 export class Input {
     constructor(player) {
         this.active = false;
@@ -21,7 +22,7 @@ export class Input {
         }
         else {
             if (key == " ") {
-                this.active = true;
+                displayText("");
                 this.player.firstSound();
             }
         }
