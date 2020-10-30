@@ -7,14 +7,36 @@ let input: Input
 let levelNumber: number = 0
 let player: Player
 let levelCreator: LevelCreator
+let audio: Audio
 
 document.addEventListener("DOMContentLoaded", setup);
+
+var silentSteps = <HTMLInputElement> document.getElementById("silentSteps");
+silentSteps.oninput = () => {
+  var text = document.getElementById("text");
+  if (silentSteps.checked == true){
+    text.style.display = "block";
+    audio.silentSteps = true
+  } else {
+    text.style.display = "none";
+    audio.silentSteps = false
+  }
+}
+
+var branchingValue = <HTMLInputElement> document.getElementById("branchingValue");
+branchingValue.onchange = () => {
+  getBranchingValue(parseFloat(branchingValue.value))
+}
+
+function getBranchingValue(value: number) {
+  levelCreator.branchingValue = value
+}
 
 export function setup() {
   levelCreator = new LevelCreator
   player = new Player
   input = new Input(player)
-  var audio = new Audio
+  audio = new Audio
   player.addAudio(audio)
 }
 

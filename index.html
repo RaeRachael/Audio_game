@@ -14,6 +14,18 @@
 </head>
 <body>
   <div id="display_block">
-  Press space to begin</div>
+    <div class="horizontally_alone">
+      Press space to begin
+    </div>
+    <div class="horizontally_alone">
+      A low value leads to more open levels - more room like. <br>
+      A high Value leads to more closed levels - more corridor like.
+      <input type="range" min="20" max="80" value="50" class="slider" id="branchingValue"/>
+    </div>
+    <div id= "horizontally_alone">
+      Make Steps Silent: <input type="checkbox" id="silentSteps"/>
+        <p id="text" style="display:none">Only Echoes will be heard</p>
+    </div>
+  </div>
 </body>
 </html>

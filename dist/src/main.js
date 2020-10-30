@@ -1,17 +1,37 @@
-import { Audio } from "./audio/audio.js";
-import { Input } from "./input/input.js";
-import { LevelCreator } from "./level/levelCreator.js";
-import { Player } from "./player/player.js";
+import { Audio } from "./audio/audio";
+import { Input } from "./input/input";
+import { LevelCreator } from "./level/levelCreator";
+import { Player } from "./player/player";
 let input;
 let levelNumber = 0;
 let player;
 let levelCreator;
+let audio;
 document.addEventListener("DOMContentLoaded", setup);
+var silentSteps = document.getElementById("silentSteps");
+silentSteps.oninput = () => {
+    var text = document.getElementById("text");
+    if (silentSteps.checked == true) {
+        text.style.display = "block";
+        audio.silentSteps = true;
+    }
+    else {
+        text.style.display = "none";
+        audio.silentSteps = false;
+    }
+};
+var branchingValue = document.getElementById("branchingValue");
+branchingValue.onchange = () => {
+    getBranchingValue(parseFloat(branchingValue.value));
+};
+function getBranchingValue(value) {
+    levelCreator.branchingValue = value;
+}
 export function setup() {
     levelCreator = new LevelCreator;
     player = new Player;
     input = new Input(player);
-    var audio = new Audio;
+    audio = new Audio;
     player.addAudio(audio);
 }
 export function displayText(text) {

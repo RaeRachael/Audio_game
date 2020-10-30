@@ -1,6 +1,7 @@
 import { Echo } from "./echo"
 
 export class Audio {
+  silentSteps: Boolean = false
   audioContext: AudioContext
   audioElement
   click: MediaElementAudioSourceNode
@@ -76,8 +77,10 @@ export class Audio {
     this.secondLeftSignal.connectEcho()
     this.secondRightSignal.connectEcho()
     this.secondForwardSignal.connectEcho()
-    this.click.connect(this.audioContext.destination)
-    this.stepDelayGain.connect(this.audioContext.destination)
+    if (this.silentSteps == false) {
+      this.click.connect(this.audioContext.destination)
+      this.stepDelayGain.connect(this.audioContext.destination)
+    }
   }
 }
 

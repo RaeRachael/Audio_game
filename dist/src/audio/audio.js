@@ -1,6 +1,7 @@
 import { Echo } from "./echo.js";
 export class Audio {
     constructor() {
+        this.silentSteps = false;
         this.stepDelayTime = 0.5;
         this.audioContext = new AudioContext();
         this.audioElement = document.querySelector('audio');
@@ -55,8 +56,10 @@ export class Audio {
         this.secondLeftSignal.connectEcho();
         this.secondRightSignal.connectEcho();
         this.secondForwardSignal.connectEcho();
-        this.click.connect(this.audioContext.destination);
-        this.stepDelayGain.connect(this.audioContext.destination);
+        if (this.silentSteps == false) {
+            this.click.connect(this.audioContext.destination);
+            this.stepDelayGain.connect(this.audioContext.destination);
+        }
     }
 }
 //# sourceMappingURL=audio.js.map
