@@ -25,7 +25,8 @@ branchingValue.onchange = () => {
     getBranchingValue(parseFloat(branchingValue.value));
 };
 function getBranchingValue(value) {
-    levelCreator.branchingValue = value;
+    levelCreator.branchingValue = value / 100.0;
+    console.log(levelCreator.branchingValue);
 }
 export function setup() {
     levelCreator = new LevelCreator;

@@ -26,8 +26,8 @@ export class LevelCreator {
             tile.paths[direction] = true;
             tile.openPaths[direction] = true;
             for (j = 0; j < levelMap.length; j++) {
-                if (levelMap[j].position.x + directionValues[direction].x === tile.position.x
-                    && levelMap[j].position.y + directionValues[direction].y === tile.position.y) {
+                if (levelMap[j].position.x === tile.position.x + directionValues[direction].x
+                    && levelMap[j].position.y === tile.position.y + directionValues[direction].y) {
                     tile.paths[direction] = false;
                     tile.openPaths[direction] = false;
                 }
@@ -68,7 +68,7 @@ export class LevelCreator {
             for (j = 0; j < levelMap.length; j++) {
                 if (levelMap[j].position.x + directionValues[direction].x === tile.position.x
                     && levelMap[j].position.y + directionValues[direction].y === tile.position.y) {
-                    tile.paths[directionValues[direction].opposite] = levelMap[j].paths[direction];
+                    tile.paths[direction] = levelMap[j].paths[directionValues[direction].opposite];
                 }
             }
         }

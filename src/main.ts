@@ -29,7 +29,8 @@ branchingValue.onchange = () => {
 }
 
 function getBranchingValue(value: number) {
-  levelCreator.branchingValue = value
+  levelCreator.branchingValue = value/100.0
+  console.log(levelCreator.branchingValue)
 }
 
 export function setup() {
