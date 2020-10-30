@@ -1,6 +1,6 @@
-import { findCorrectTile } from "../helpers/helpers.js";
-import { directionValues } from "../helpers/typesAndConst.js";
-import { displayText } from "../main.js";
+import { findCorrectTile } from "../helpers/helpers";
+import { directionValues } from "../helpers/typesAndConst";
+import { displayText } from "../main";
 export class Player {
     constructor() {
         this.position = { x: 0, y: 0 };
@@ -26,7 +26,7 @@ export class Player {
             this.triggerAudio();
         }
         if (findCorrectTile(this.currentLevel.levelMap, this.position).exitTile) {
-            displayText("ExitTile");
+            displayText("ExitTile\nPress space to begin the next level");
         }
     }
     left() {
