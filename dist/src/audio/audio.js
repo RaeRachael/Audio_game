@@ -1,4 +1,4 @@
-import { Echo } from "./echo.js";
+import { Echo } from "./echo";
 export class Audio {
     constructor() {
         this.silentSteps = false;
@@ -20,7 +20,6 @@ export class Audio {
         this.stepDelay.connect(this.stepDelayGain);
     }
     secondClickAudio(left, right, forward) {
-        this.buildEcho(left, right, forward);
         this.buildSecondEcho(left, right, forward);
         this.stepDelayGain.gain.value = 1;
         this.playClick();
