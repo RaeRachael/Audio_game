@@ -1,7 +1,7 @@
-import { Audio } from "./audio/audio";
-import { Input } from "./input/input";
-import { LevelCreator } from "./level/levelCreator";
-import { Player } from "./player/player";
+import { Audio } from "./audio/audio.js";
+import { Input } from "./input/input.js";
+import { LevelCreator } from "./level/levelCreator.js";
+import { Player } from "./player/player.js";
 let input;
 let levelNumber = 0;
 let player;
