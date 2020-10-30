@@ -1,8 +1,11 @@
-import { directionValues } from "../helpers/typesAndConst";
-import { Level } from "./level";
+import { directionValues } from "../helpers/typesAndConst.js";
+import { Level } from "./level.js";
 var i;
 var j;
 export class LevelCreator {
+    constructor() {
+        this.branchingValue = 0.5;
+    }
     createLevel(number) {
         var levelMap = [{
                 position: { "x": 0, "y": 0 },

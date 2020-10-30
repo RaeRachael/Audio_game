@@ -7,7 +7,7 @@ var j:number;
 
 export class LevelCreator {
 
-  branchingValue: number
+  branchingValue: number = 0.5
 
   createLevel(number): Level {
     var levelMap: Tile[] = [ {

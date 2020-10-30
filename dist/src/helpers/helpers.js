@@ -1,4 +1,4 @@
-import { directionValues } from "./typesAndConst";
+import { directionValues } from "./typesAndConst.js";
 export function findCorrectTile(levelMap, location) {
     var output;
     levelMap.forEach(function (tile) {
