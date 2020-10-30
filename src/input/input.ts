@@ -29,7 +29,7 @@ export class Input {
       }
     } else {
       if (key == " ") {
-        displayText("")
+        displayText("Use left/right arrow keys to turn and the up arrow to step forward")
         this.player.firstSound()
       }
     }
