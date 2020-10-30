@@ -45,6 +45,7 @@ export function displayText(text: string) {
   var displayBlock = document.getElementById("display_block")
   displayBlock.innerHTML = text
   input.active = !input.active
+  console.log(input.active, "playing?")
   if (input.active) {
     levelNumber++
     player.reset()

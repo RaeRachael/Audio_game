@@ -1,5 +1,5 @@
-import { directionValues } from "../helpers/typesAndConst.js";
-import { Level } from "./level.js";
+import { directionValues } from "../helpers/typesAndConst";
+import { Level } from "./level";
 var i;
 var j;
 export class LevelCreator {
@@ -28,7 +28,7 @@ export class LevelCreator {
             for (j = 0; j < levelMap.length; j++) {
                 if (levelMap[j].position.x === tile.position.x + directionValues[direction].x
                     && levelMap[j].position.y === tile.position.y + directionValues[direction].y) {
-                    tile.paths[direction] = false;
+                    tile.paths[direction] = levelMap[j].paths[directionValues[direction].opposite];
                     tile.openPaths[direction] = false;
                 }
             }
@@ -66,8 +66,9 @@ export class LevelCreator {
     checkForNearbyTiles(tile, levelMap) {
         for (let direction in tile.openPaths) {
             for (j = 0; j < levelMap.length; j++) {
-                if (levelMap[j].position.x + directionValues[direction].x === tile.position.x
-                    && levelMap[j].position.y + directionValues[direction].y === tile.position.y) {
+                // new tile is {0,1} - NORTH {x: 0, y: 1} - check if tile at {0, 2} set path NORTH == tile {0,2} path SOUTH
+                if (levelMap[j].position.x === tile.position.x + directionValues[direction].x
+                    && levelMap[j].position.y === tile.position.y + directionValues[direction].y) {
                     tile.paths[direction] = levelMap[j].paths[directionValues[direction].opposite];
                 }
             }

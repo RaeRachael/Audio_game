@@ -1,4 +1,4 @@
-import { Echo } from "./echo.js";
+import { Echo } from "./echo";
 export class Audio {
     constructor() {
         this.silentSteps = false;

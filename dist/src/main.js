@@ -1,7 +1,7 @@
-import { Audio } from "./audio/audio.js";
-import { Input } from "./input/input.js";
-import { LevelCreator } from "./level/levelCreator.js";
-import { Player } from "./player/player.js";
+import { Audio } from "./audio/audio";
+import { Input } from "./input/input";
+import { LevelCreator } from "./level/levelCreator";
+import { Player } from "./player/player";
 let input;
 let levelNumber = 0;
 let player;
@@ -39,6 +39,7 @@ export function displayText(text) {
     var displayBlock = document.getElementById("display_block");
     displayBlock.innerHTML = text;
     input.active = !input.active;
+    console.log(input.active, "playing?");
     if (input.active) {
         levelNumber++;
         player.reset();
