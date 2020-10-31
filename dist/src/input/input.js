@@ -1,4 +1,4 @@
-import { displayText } from "../main,js";
+import { displayText } from "../main.js";
 export class Input {
     constructor(player) {
         this.active = false;
