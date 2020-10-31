@@ -74,25 +74,31 @@ export class LevelCreator {
     singleTile.position.y = previousTile.position.y + openPathValue.y
 
     this.checkForNearbyTiles(singleTile, levelMap)
-    
-    this.createOpenPaths(singleTile)
 
     return singleTile
   }
 
   checkForNearbyTiles(tile:Tile, levelMap:Tile[]) {
     for (let direction in tile.openPaths) {
+      var freeDirection = true
       for ( j = 0; j < levelMap.length; j++ ) {
-        // new tile is {0,1} - NORTH {x: 0, y: 1} - check if tile at {0, 2} set path NORTH == tile {0,2} path SOUTH
         if (levelMap[j].position.x === tile.position.x + directionValues[direction].x
             && levelMap[j].position.y === tile.position.y  + directionValues[direction].y) {
+          freeDirection = false
           tile.paths[direction] = levelMap[j].paths[directionValues[direction].opposite]
+          if (levelMap[j].openPaths[directionValues[direction].opposite]) {
+            levelMap[j].openPaths[directionValues[direction].opposite] = false
+            levelMap[j].numberOpenPaths--
+          }
         }
+      }
+      if (freeDirection) {
+        this.createOpenPath(tile, direction)
       }
     }
   }
 
-  createOpenPaths(tile:Tile) {
+  createOpenPath(tile:Tile, direction: string) {
     for( let direction in tile.paths) {
       if (tile.paths[direction] === false && Math.random() > this.branchingValue){
         tile.paths[direction] = true
