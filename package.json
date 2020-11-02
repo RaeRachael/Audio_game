@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "check-types": "tsc",
-    "start": "http-server -p 3050",
+    "start": "http-server -p 3000",
     "test": "jest --coverage"
   },
   "author": "rachael ewins",
