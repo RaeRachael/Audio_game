@@ -50,7 +50,7 @@ export class Audio {
 
     this.exitSecondLeftSignal = new Echo(this.audioContext, this.exitDing, -1, this.stepDelayTime)
     this.exitSecondRightSignal = new Echo(this.audioContext, this.exitDing, 1, this.stepDelayTime)
-    this.exitSecondRightSignal = new Echo(this.audioContext, this.exitDing, 0, this.stepDelayTime)
+    this.exitSecondForwardSignal = new Echo(this.audioContext, this.exitDing, 0, this.stepDelayTime)
     this.stepDelayGain = this.audioContext.createGain()
   }
 
