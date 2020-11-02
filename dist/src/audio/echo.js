@@ -5,7 +5,7 @@ export class Echo {
         this.panNode.pan.value = pan;
         this.panNodeOpposite = audioContext.createStereoPanner();
         this.panNodeOpposite.pan.value = pan * -1;
-        this.defaultGain = 0.8 / (2 - pan ** 2); //half for forward
+        this.defaultGain = 0.6;
         this.click = click;
         this.stepDelay = this.audioContext.createDelay();
         this.stepDelay.delayTime.value = delay;
@@ -18,7 +18,7 @@ export class Echo {
     addEchoValues(distance) {
         if (distance > 0) {
             this.echoDelay.delayTime.value = distance / 5;
-            this.echoGain.gain.value = (this.defaultGain / (2 * distance) ** 2);
+            this.echoGain.gain.value = (this.defaultGain / (2 * distance));
             this.echoDelayOpposite.delayTime.value = distance / 10 + 1 / 1000;
             this.echoGainOpposite.gain.value = this.echoGain.gain.value / 10;
         }

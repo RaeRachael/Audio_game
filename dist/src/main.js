@@ -36,16 +36,15 @@ export function setup() {
     player.addAudio(audio);
 }
 export function displayText(text) {
-    var displayBlock = document.getElementById("display_block");
-    displayBlock.innerHTML = text;
     input.active = !input.active;
-    console.log(input.active, "playing?");
     if (input.active) {
         levelNumber++;
         player.reset();
         var currentLevel = levelCreator.createLevel(levelNumber);
         player.setLevel(currentLevel);
-        console.log(levelNumber, currentLevel);
+        // console.log(levelNumber, currentLevel)
     }
+    var displayBlock = document.getElementById("display_block");
+    displayBlock.innerHTML = "curret level:" + levelNumber.toString() + "  " + text;
 }
 //# sourceMappingURL=main.js.map

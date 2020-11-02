@@ -14,7 +14,7 @@ export class LevelCreator {
                 numberOpenPaths: 2,
                 exitTile: false
             }];
-        for (i = 0; i < number ** 2 - 1; i++) {
+        for (i = 0; i < number ** 2; i++) {
             if (i === levelMap.length - 1 && levelMap[i].numberOpenPaths === 0) {
                 this.makeOneOpenPath(levelMap[i], levelMap);
             }

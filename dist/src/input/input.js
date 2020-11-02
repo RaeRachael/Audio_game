@@ -9,7 +9,6 @@ export class Input {
     }
     keyResponse(key) {
         if (this.active) {
-            console.log(key);
             if (key == "ArrowUp") {
                 this.player.step();
             }
