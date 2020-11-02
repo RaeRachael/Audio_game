@@ -26,6 +26,7 @@ export class Player {
             this.triggerAudio();
         }
         if (findCorrectTile(this.currentLevel.levelMap, this.position).exitTile) {
+            this.triggerAudio();
             displayText("ExitTile     Press space to begin next level");
         }
     }

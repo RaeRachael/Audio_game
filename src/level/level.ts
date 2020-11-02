@@ -13,6 +13,9 @@ export class Level{
     for (let direction in tile.paths){
       if (testDirection === direction.toString()){
         if (tile.paths[direction] === false) {
+          distance+= 0.5
+          if (tile.exitTile) { distance *= -1 }
+          console.log(tile, distance)
           break
         } else {
           var nexLocation: Position= {
@@ -23,6 +26,6 @@ export class Level{
         }
       }
     }
-    return (distance + 0.5)
+    return distance
   }
 }

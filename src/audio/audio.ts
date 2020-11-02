@@ -5,6 +5,7 @@ export class Audio {
   audioContext: AudioContext
   audioElement
   click: MediaElementAudioSourceNode
+  exitDing: MediaElementAudioSourceNode
   stepDelay: DelayNode
   stepDelayGain: GainNode
   stepDelayTime: number = 0.5
@@ -17,22 +18,40 @@ export class Audio {
   secondRightSignal: Echo
   secondForwardSignal: Echo
 
+  exitLeftSignal: Echo
+  exitRightSignal: Echo
+  exitForwardSignal: Echo
+  
+  exitSecondLeftSignal: Echo
+  exitSecondRightSignal: Echo
+  exitSecondForwardSignal: Echo
+
   constructor() {
     this.audioContext = new AudioContext();
-    this.audioElement = document.querySelector('audio');
-    this.click = this.audioContext.createMediaElementSource(this.audioElement);
+    this.click = this.audioContext.createMediaElementSource(<HTMLAudioElement>document.getElementById('click'));
+    this.exitDing = this.audioContext.createMediaElementSource(<HTMLAudioElement>document.getElementById('ding'));
+
     this.leftSignal = new Echo(this.audioContext, this.click, -1)
     this.rightSignal = new Echo(this.audioContext, this.click, 1)
     this.forwardSignal = new Echo(this.audioContext, this.click, 0)
     this.stepDelay = this.audioContext.createDelay()
-    this.stepDelay.delayTime.value = this.stepDelayTime
-    this.click.connect(this.stepDelay)
+
     this.secondLeftSignal = new Echo(this.audioContext, this.click, -1, this.stepDelayTime)
     this.secondRightSignal = new Echo(this.audioContext, this.click, 1, this.stepDelayTime)
     this.secondForwardSignal = new Echo(this.audioContext, this.click, 0, this.stepDelayTime)
     this.stepDelayGain = this.audioContext.createGain()
     this.stepDelayGain.gain.value = 1
     this.stepDelay.connect(this.stepDelayGain)
+
+    this.exitLeftSignal = new Echo(this.audioContext, this.exitDing, -1)
+    this.exitRightSignal = new Echo(this.audioContext, this.exitDing, 1)
+    this.exitForwardSignal = new Echo(this.audioContext, this.exitDing, 0)
+    this.stepDelay = this.audioContext.createDelay()
+
+    this.exitSecondLeftSignal = new Echo(this.audioContext, this.exitDing, -1, this.stepDelayTime)
+    this.exitSecondRightSignal = new Echo(this.audioContext, this.exitDing, 1, this.stepDelayTime)
+    this.exitSecondRightSignal = new Echo(this.audioContext, this.exitDing, 0, this.stepDelayTime)
+    this.stepDelayGain = this.audioContext.createGain()
   }
 
   secondClickAudio(left: number, right: number, forward: number) {
@@ -62,12 +81,18 @@ export class Audio {
     this.leftSignal.addEchoValues(left)
     this.rightSignal.addEchoValues(right)
     this.forwardSignal.addEchoValues(forward)
+    this.exitLeftSignal.addEchoValues(-left)
+    this.exitRightSignal.addEchoValues(-right)
+    this.exitForwardSignal.addEchoValues(-forward)
   }
 
   buildSecondEcho(left: number, right: number, forward: number) {
     this.secondLeftSignal.addEchoValues(left)
     this.secondRightSignal.addEchoValues(right)
     this.secondForwardSignal.addEchoValues(forward)
+    this.exitSecondLeftSignal.addEchoValues(-left)
+    this.exitSecondRightSignal.addEchoValues(-right)
+    this.exitSecondForwardSignal.addEchoValues(-forward)
   }
 
   makeConnections() {
@@ -77,6 +102,12 @@ export class Audio {
     this.secondLeftSignal.connectEcho()
     this.secondRightSignal.connectEcho()
     this.secondForwardSignal.connectEcho()
+    this.exitLeftSignal.connectEcho()
+    this.exitRightSignal.connectEcho()
+    this.exitForwardSignal.connectEcho()
+    this.exitSecondLeftSignal.connectEcho()
+    this.exitSecondRightSignal.connectEcho()
+    this.exitSecondForwardSignal.connectEcho()
     if (this.silentSteps == false) {
       this.click.connect(this.audioContext.destination)
       this.stepDelayGain.connect(this.audioContext.destination)
