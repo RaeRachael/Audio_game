@@ -4,8 +4,10 @@ export class Audio {
         this.silentSteps = false;
         this.stepDelayTime = 0.5;
         this.audioContext = new AudioContext();
-        this.click = this.audioContext.createMediaElementSource(document.getElementById('click'));
-        this.exitDing = this.audioContext.createMediaElementSource(document.getElementById('ding'));
+        this.audioClick = document.getElementById('click');
+        this.click = this.audioContext.createMediaElementSource(this.audioClick);
+        this.audioDing = document.getElementById('ding');
+        this.exitDing = this.audioContext.createMediaElementSource(this.audioDing);
         this.leftSignal = new Echo(this.audioContext, this.click, -1);
         this.rightSignal = new Echo(this.audioContext, this.click, 1);
         this.forwardSignal = new Echo(this.audioContext, this.click, 0);
@@ -38,12 +40,15 @@ export class Audio {
         this.playClick();
     }
     playClick() {
-        this.audioElement.pause();
-        this.audioElement.currentTime = 0;
+        this.audioClick.pause();
+        this.audioDing.pause();
+        this.audioClick.currentTime = 0;
+        this.audioDing.currentTime = 0;
         if (this.audioContext.state === 'suspended') {
             this.audioContext.resume();
         }
-        this.audioElement.play();
+        this.audioClick.play();
+        this.audioDing.play();
     }
     buildEcho(left, right, forward) {
         this.leftSignal.addEchoValues(left);

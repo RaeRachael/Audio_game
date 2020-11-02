@@ -3,7 +3,8 @@ import { Echo } from "./echo"
 export class Audio {
   silentSteps: Boolean = false
   audioContext: AudioContext
-  audioElement
+  audioClick: HTMLAudioElement
+  audioDing: HTMLAudioElement
   click: MediaElementAudioSourceNode
   exitDing: MediaElementAudioSourceNode
   stepDelay: DelayNode
@@ -28,8 +29,10 @@ export class Audio {
 
   constructor() {
     this.audioContext = new AudioContext();
-    this.click = this.audioContext.createMediaElementSource(<HTMLAudioElement>document.getElementById('click'));
-    this.exitDing = this.audioContext.createMediaElementSource(<HTMLAudioElement>document.getElementById('ding'));
+    this.audioClick = <HTMLAudioElement>document.getElementById('click')
+    this.click = this.audioContext.createMediaElementSource(this.audioClick);
+    this.audioDing = <HTMLAudioElement>document.getElementById('ding')
+    this.exitDing = this.audioContext.createMediaElementSource(this.audioDing);
 
     this.leftSignal = new Echo(this.audioContext, this.click, -1)
     this.rightSignal = new Echo(this.audioContext, this.click, 1)
@@ -69,12 +72,15 @@ export class Audio {
   }
   
   playClick() {
-    this.audioElement.pause()
-    this.audioElement.currentTime = 0
+    this.audioClick.pause()
+    this.audioDing.pause()
+    this.audioClick.currentTime = 0
+    this.audioDing.currentTime =0 
     if (this.audioContext.state === 'suspended') {
       this.audioContext.resume();
     }
-    this.audioElement.play()
+    this.audioClick.play()
+    this.audioDing.play()
   }
 
   buildEcho(left: number, right: number, forward: number) {
