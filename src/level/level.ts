@@ -15,14 +15,12 @@ export class Level{
         if (tile.paths[direction] === false) {
           distance+= 0.5
           if (tile.exitTile) { distance *= -1 }
-          console.log(tile, distance)
-          break
         } else {
           var nexLocation: Position= {
             x: location.x + directionValues[direction].x,
             y: location.y + directionValues[direction].y
-        }
-          this.blockingDistance(nexLocation, testDirection, distance ++)
+          }
+          distance = this.blockingDistance(nexLocation, testDirection, ++distance)
         }
       }
     }

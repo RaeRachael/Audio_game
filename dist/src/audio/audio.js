@@ -28,7 +28,6 @@ export class Audio {
         this.stepDelayGain = this.audioContext.createGain();
     }
     secondClickAudio(left, right, forward) {
-        this.buildEcho(left, right, forward);
         this.buildSecondEcho(left, right, forward);
         this.stepDelayGain.gain.value = 1;
         this.playClick();

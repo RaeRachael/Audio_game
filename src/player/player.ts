@@ -29,7 +29,7 @@ export class Player {
   }
 
   step() {
-    if (this.currentLevel.blockingDistance(this.position, this.direction) != 0.5) {
+    if ( Math.abs(this.currentLevel.blockingDistance(this.position, this.direction)) != 0.5) {
       this.position.x += directionValues[this.direction].x
       this.position.y += directionValues[this.direction].y
       this.triggerSecondStepAudio()
