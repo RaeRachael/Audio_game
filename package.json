@@ -9,7 +9,7 @@
     "test": "jest --coverage"
   },
   "author": "rachael ewins",
-  "license": "ISC",
+  "license": "ISC", 
   "type": "module",
   "dependencies": {
     "@types/jest": "^26.0.15",

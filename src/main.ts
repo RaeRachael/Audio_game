@@ -48,7 +48,6 @@ export function displayText(text: string) {
     player.reset()
     var currentLevel = levelCreator.createLevel(levelNumber)
     player.setLevel(currentLevel)
-    // console.log(levelNumber, currentLevel)
   }
   var displayBlock = document.getElementById("display_block")
   displayBlock.innerHTML = "curret level:" + levelNumber.toString() + "  " + text

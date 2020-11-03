@@ -6,7 +6,6 @@ export type Tile = {
   position: Position
   paths: Directions
   openPaths: Directions
-  numberOpenPaths: number
   exitTile: boolean
 }
 

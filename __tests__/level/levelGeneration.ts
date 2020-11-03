@@ -57,7 +57,7 @@ describe( "function createLevel()", function() {
   it( "closes all open paths at the end", function() {
     var levelMap = levelCreator.createLevel(2).levelMap
     for( var i = 0; i < levelMap.length; i++) {
-      expect(levelMap[i].numberOpenPaths).toEqual(0)
+      expect(levelCreator.numberOpenPaths(levelMap[i])).toEqual(0)
     }
   })
 

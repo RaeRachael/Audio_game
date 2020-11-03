@@ -7,14 +7,12 @@ describe( "function checkForNearbyTiles(tile)", function() {
         "position": {"x": 0, "y": 0},
         "paths": { "North": true, "South": false, "East": false, "West": false},
         "openPaths": {"North": false, "South": false, "East": false, "West": false},
-        "numberOpenPaths": 1,
         "exitTile": false
       }]
       var testTile = {
         "position": {"x": 0, "y": 1},
         "paths": { "North": false, "South": false, "East": true, "West": false},
         "openPaths": {"North": false, "South": false, "East": false, "West": false},
-        "numberOpenPaths": 0,
         "exitTile": false
       }
       var levelCreator = new LevelCreator
@@ -29,14 +27,12 @@ describe( "function checkForNearbyTiles(tile)", function() {
         "position": {"x": 0, "y": 0},
         "paths": { "North": false, "South": false, "East": false, "West": false},
         "openPaths": {"North": false, "South": false, "East": false, "West": false},
-        "numberOpenPaths": 1,
         "exitTile": false
       }]
       var testTile = {
         "position": {"x": 0, "y": 1},
         "paths": { "North": false, "South": true, "East": true, "West": false},
         "openPaths": {"North": false, "South": false, "East": false, "West": false},
-        "numberOpenPaths": 0,
         "exitTile": false
       }
 

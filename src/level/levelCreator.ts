@@ -14,18 +14,27 @@ export class LevelCreator {
       position: {"x": 0, "y": 0},
       paths: {"North": true, "South": true, "East": false, "West": false},
       openPaths: {"North": true, "South": true, "East": false, "West": false},
-      numberOpenPaths: 2,
       exitTile: false
     } ]
     for ( i = 0; i < number**2; i++ ) {
-      if ( i === levelMap.length -1 && levelMap[i].numberOpenPaths === 0) {
+      if ( i === levelMap.length -1 && this.numberOpenPaths(levelMap[i]) === 0) {
         this.makeOneOpenPath(levelMap[i], levelMap)
       }
-      while (levelMap[i].numberOpenPaths > 0 ) {
+      while (this.numberOpenPaths(levelMap[i]) > 0 ) {
         levelMap.push(this.createSingleTile(levelMap[i], levelMap))
       }
     }
     return new Level(this.tidy(levelMap))
+  }
+
+  numberOpenPaths(tile: Tile):number {
+    var openPaths = 0
+    for (let direction in tile.openPaths) {
+      if (tile.openPaths[direction]) {
+        openPaths++
+      }
+    }
+    return openPaths
   }
 
   makeOneOpenPath(tile:Tile, levelMap:Tile[]) {
@@ -41,7 +50,6 @@ export class LevelCreator {
         }
       }
       if (tile.paths[direction] === true) {
-        tile.numberOpenPaths ++
         break
       }
     }
@@ -52,7 +60,6 @@ export class LevelCreator {
       position: {"x": 0, "y": 0},
       paths: {"North": false, "South": false, "East": false, "West": false},
       openPaths: {"North": false, "South": false, "East": false, "West": false},
-      numberOpenPaths: 0,
       exitTile: false
     }
     var openPathValue: { x:number, y:number } = {x: 0, y: 0}
@@ -64,7 +71,6 @@ export class LevelCreator {
         singleTile.paths[directionValues[direction].opposite] = true
         
         previousTile.openPaths[direction] = false
-        previousTile.numberOpenPaths--
       
         break
       }
@@ -88,7 +94,6 @@ export class LevelCreator {
           tile.paths[direction] = levelMap[j].paths[directionValues[direction].opposite]
           if (levelMap[j].openPaths[directionValues[direction].opposite]) {
             levelMap[j].openPaths[directionValues[direction].opposite] = false
-            levelMap[j].numberOpenPaths--
           }
         }
       }
@@ -99,12 +104,9 @@ export class LevelCreator {
   }
 
   createOpenPath(tile:Tile, direction: string) {
-    for( let direction in tile.paths) {
-      if (tile.paths[direction] === false && Math.random() > this.branchingValue){
-        tile.paths[direction] = true
-        tile.openPaths[direction] = true
-        tile.numberOpenPaths ++
-      }
+    if (Math.random() > this.branchingValue){
+      tile.paths[direction] = true
+      tile.openPaths[direction] = true
     }
   }
 
@@ -114,7 +116,6 @@ export class LevelCreator {
         if (levelMap[i].openPaths[direction] === true){
           levelMap[i].paths[direction] = false
           levelMap[i].openPaths[direction] = false
-          levelMap[i].numberOpenPaths --
         }
       }
     }

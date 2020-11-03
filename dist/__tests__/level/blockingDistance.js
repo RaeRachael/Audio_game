@@ -5,7 +5,6 @@ describe("function takes in a location and direction", function () {
                 "position": { "x": 0, "y": 0 },
                 "paths": { "North": false, "South": false, "East": false, "West": false },
                 "openPaths": { "North": false, "South": false, "East": false, "West": false },
-                "numberOpenPaths": 0,
                 "exitTile": false
             }];
         var level = new Level(levelMap);
@@ -19,14 +18,12 @@ describe("function takes in a location and direction", function () {
                 "position": { "x": 0, "y": 0 },
                 "paths": { "North": true, "South": false, "East": false, "West": false },
                 "openPaths": { "North": false, "South": false, "East": false, "West": false },
-                "numberOpenPaths": 1,
                 "exitTile": false
             },
             {
                 "position": { "x": 0, "y": 1 },
                 "paths": { "North": false, "South": true, "East": false, "West": false },
                 "openPaths": { "North": false, "South": false, "East": false, "West": false },
-                "numberOpenPaths": 0,
                 "exitTile": false
             }];
         var level = new Level(levelMap);

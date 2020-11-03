@@ -14,7 +14,6 @@ describe( "function createSingleTile(previousTile)", function() {
     "position": {"x": 0, "y": 0},
     "paths": { "North": false, "South": false, "East": false, "West": false},
     "openPaths": {"North": false, "South": false, "East": false, "West": false},
-    "numberOpenPaths": 1,
     "exitTile": false
   }
   var levelMap = [previousTile]
@@ -98,7 +97,7 @@ describe( "function createSingleTile(previousTile)", function() {
         var secondTile = levelCreator.createSingleTile(previousTile, levelMap)
 
         expect(secondTile.position).toEqual({x: -1, y: 0})
-        expect(secondTile.numberOpenPaths).toEqual(3)
+        expect(levelCreator.numberOpenPaths(secondTile)).toEqual(3)
       })
 
       it( "can create a tile with one path", function() {
@@ -111,7 +110,7 @@ describe( "function createSingleTile(previousTile)", function() {
         var secondTile = levelCreator.createSingleTile(previousTile, levelMap)
 
         expect(secondTile.position).toEqual({x: -1, y: 0})
-        expect(secondTile.numberOpenPaths).toEqual(0)
+        expect(levelCreator.numberOpenPaths(secondTile)).toEqual(0)
       })
     })
   })
