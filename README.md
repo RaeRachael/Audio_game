@@ -1,6 +1,8 @@
 # Audio_game
 
-The aim is to a make a web based game in which the player is only given audio information (no visuals)
+The aim is to a make a web based game in which the player is only given audio information (no visuals). Still being worked on
+
+[Deployed and Playable version](http://echo_maze.surge.sh/)
 
 ## Progress
 
