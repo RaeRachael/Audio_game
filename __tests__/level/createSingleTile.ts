@@ -88,7 +88,7 @@ describe( "function createSingleTile(previousTile)", function() {
 
     describe( "new open paths can be created", function() {
       it( "can create a tile with four paths", function() {
-        jest.spyOn(global.Math, 'random').mockReturnValue(0.5);
+        jest.spyOn(global.Math, 'random').mockReturnValue(0.8);
 
         previousTile.position = { x: 0, y: 0 }
         previousTile.paths = {"North": false, "South": false, "East": false, "West": true}

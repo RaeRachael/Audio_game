@@ -1,5 +1,14 @@
+import { Audio } from "../../src/audio/audio";
 import { Level } from "../../src/level/level";
 import { Player } from "../../src/player/player";
+jest.mock("../../src/audio/audio", () => ({
+    Audio: jest.fn().mockImplementation(() => {
+        return {
+            audioSequence: jest.fn(),
+            secondClickAudio: jest.fn(),
+        };
+    })
+}));
 var levelMap = [{
         "position": { "x": 0, "y": 0 },
         "paths": { "North": false, "South": false, "East": false, "West": false },
@@ -10,6 +19,7 @@ var levelMap = [{
 var mockedlevel = new Level(levelMap);
 var player = new Player;
 player.setLevel(mockedlevel);
+player.addAudio(new Audio);
 afterEach(() => {
     player.reset();
 });
