@@ -52,7 +52,7 @@ describe("function createLevel()", function () {
     it("adds a new OpenPath when needed", function () {
         jest.spyOn(global.Math, 'random').mockReturnValue(0.1);
         var levelMap = levelCreator.createLevel(4).levelMap;
-        expect(levelMap.length).toEqual(16);
+        expect(levelMap.length).toEqual(17);
     });
 });
 //# sourceMappingURL=levelGeneration.js.map

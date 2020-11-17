@@ -70,7 +70,7 @@ describe( "function createLevel()", function() {
     jest.spyOn(global.Math, 'random').mockReturnValue(0.1);
 
     var levelMap = levelCreator.createLevel(4).levelMap
-    expect(levelMap.length).toEqual(16)
+    expect(levelMap.length).toEqual(17)
 
   })
 

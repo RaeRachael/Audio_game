@@ -11,27 +11,6 @@ let audio: Audio
 
 document.addEventListener("DOMContentLoaded", setup);
 
-var silentSteps = <HTMLInputElement> document.getElementById("silentSteps");
-silentSteps.oninput = () => {
-  var text = document.getElementById("text");
-  if (silentSteps.checked == true){
-    text.style.display = "block";
-    audio.silentSteps = true
-  } else {
-    text.style.display = "none";
-    audio.silentSteps = false
-  }
-}
-
-var branchingValue = <HTMLInputElement> document.getElementById("branchingValue");
-branchingValue.onchange = () => {
-  getBranchingValue(parseFloat(branchingValue.value))
-}
-
-function getBranchingValue(value: number) {
-  levelCreator.branchingValue = value/100.0
-  console.log(levelCreator.branchingValue)
-}
 
 export function setup() {
   levelCreator = new LevelCreator
@@ -39,6 +18,29 @@ export function setup() {
   input = new Input(player)
   audio = new Audio
   player.addAudio(audio)
+
+  var silentSteps = <HTMLInputElement> document.getElementById("silentSteps");
+  silentSteps.oninput = () => {
+    var text = document.getElementById("text");
+    if (silentSteps.checked == true){
+      text.style.display = "block";
+      audio.silentSteps = true
+    } else {
+      text.style.display = "none";
+      audio.silentSteps = false
+    }
+  }
+
+  var branchingValue = <HTMLInputElement> document.getElementById("branchingValue");
+  branchingValue.onchange = () => {
+    getBranchingValue(parseFloat(branchingValue.value))
+  }
+
+  function getBranchingValue(value: number) {
+    levelCreator.branchingValue = value/100.0
+    console.log(levelCreator.branchingValue)
+  }
+
 }
 
 export function displayText(text: string) {
